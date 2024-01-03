@@ -1,6 +1,4 @@
-# UIT - AUTO LECTURER SURVEY
-
-[![UIT Lecturer Survey](https://img.shields.io/badge/UIT_Auto_Lecturer_Survey-Tampermonkey-a0c4ff?style=for-the-badge)](../../raw/main/UITAutoLecturerSurvey.user.js)
+# ✨ UIT - AUTO LECTURER SURVEY ✨
 
 ## 🪴 HƯỚNG DẪN SỬ DỤNG
 
@@ -24,20 +22,24 @@
 
 -   `Tampermonkey` _(Extension settings)_ > `Dashboard` > `UIT Auto Lecturer Survey` > Gạt nút tắt
 
-## 📝 CHỨC NĂNG
+> [!IMPORTANT]
+>
+> Vì không rõ các link khảo sát sẽ giống nhau hay không nên thôi tốt nhất tắt khi không sử dụng. Chỉ bật khi làm khảo sát giảng viên thôi 😇
+
+## 🎆 CHỨC NĂNG
 
 -   Chọn ngẫu nhiên `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
 -   Chọn đánh giá thứ 4 trong bảng
 -   Tự động ấn tiếp tục và submit form
 
-## TODO
+## 📒 TODO
 
 -   [ ] Tự động đóng tab khi hoàn thành
 -   [ ] Chọn ngẫu nhiên đánh giá trong bảng theo array định sẵn
 
 > [!NOTE]
 >
-> Nào có form lại thì tính tiếp
+> Khi nào có form lại thì tính tiếp, dùng AI gen tiếp 🫠
 
 ## 📝 LICENSE
 
@@ -45,4 +47,4 @@
 
 > [!NOTE]
 >
-> 10% não 90% ChatGPT & Copilot =))
+> 10% não 90% **ChatGPT** & **Copilot** =))
