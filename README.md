@@ -5,10 +5,10 @@
 ### 1️⃣ Cài đặt extension Tampermonkey
 
 -   [Chrome](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
--   [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
 -   [Edge](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
--   [Opera](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 -   [Safari](https://apps.apple.com/us/app/tampermonkey/id1482490089)
+-   [Firefox](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+-   [Opera](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 
 ### 2️⃣ Cài đặt script
 
