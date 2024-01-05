@@ -35,10 +35,11 @@
         "Trên 90%",
     ];
     // Select first type
+
     answerLabels.forEach(function (label) {
-        while (true) {
-            sortArrayRandomly(firstTypeSelectionsArray);
-            if (label.innerText.trim() === firstTypeSelectionsArray[0]) {
+        firstTypeSelectionsArray = sortArrayRandomly(firstTypeSelectionsArray);
+        for (let i = 0; i < firstTypeSelectionsArray.length; i++) {
+            if (label.innerText.trim() === firstTypeSelectionsArray[i]) {
                 label.click();
                 break;
             }
