@@ -5,6 +5,9 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=FBF0B2)](../../graphs/contributors)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecturer-survey)
 
+[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
+[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
+
 <div align="center">
   <pre><strong>Tampermonkey Userscript:</strong> Tự động đánh giá giảng viên <em>(khảo sát môn học)</em> UIT</pre>
 </div>
