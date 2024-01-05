@@ -4,8 +4,8 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.6
-// @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.jpg
+// @version         1.7
+// @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
 // @run-at          document-idle
