@@ -52,7 +52,7 @@
   let answerLabels = document.querySelectorAll('label.answertext');
   answerLabels.forEach(function (label) {
     let firstTypeSelectionsArrayRandom = sortArrayRandomly(
-      firstTypeSelectionsArray
+      firstTypeSelectionsArray,
     );
     for (let i = 0; i < firstTypeSelectionsArrayRandom.length; i++) {
       if (label.innerText.trim() === firstTypeSelectionsArrayRandom[i]) {
@@ -64,7 +64,7 @@
 
   // Select second type questions
   let secondTypeSelectionsArrayClass = secondTypeSelectionsArray.map(
-    (className) => `${className} answer-item radio-item`
+    (className) => `${className} answer-item radio-item`,
   );
   const radioLists = document.querySelectorAll('.answers-list.radio-list');
   radioLists.forEach(function (radioList) {
@@ -73,7 +73,7 @@
         randomIndex(secondTypeSelectionsArrayClass)
       ];
     let randomElement = radioList.querySelector(
-      '.' + randomElementClass.replace(/ /g, '.')
+      '.' + randomElementClass.replace(/ /g, '.'),
     );
     if (randomElement) {
       randomElement.click();
@@ -84,7 +84,7 @@
 
   // Continue to next page
   const moveNextBtn = document.querySelector(
-    'button[type="submit"][id="movenextbtn"]'
+    'button[type="submit"][id="movenextbtn"]',
   );
   if (moveNextBtn) {
     moveNextBtn.click();
