@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.5
+// @version         1.6
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.jpg
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -40,9 +40,9 @@
     ];
     // Select first type
     answerLabels.forEach(function (label) {
-        while (true) {
-            sortArrayRandomly(firstTypeSelectionsArray);
-            if (label.innerText.trim() === firstTypeSelectionsArray[0]) {
+        firstTypeSelectionsArray = sortArrayRandomly(firstTypeSelectionsArray);
+        for (let i = 0; i < firstTypeSelectionsArray.length; i++) {
+            if (label.innerText.trim() === firstTypeSelectionsArray[i]) {
                 label.click();
                 break;
             }
