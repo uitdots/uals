@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.4
+// @version         1.5
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.jpg
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -20,6 +20,12 @@
 (function () {
     "use strict";
 
+    function sortArrayRandomly(array) {
+        return array.sort(function () {
+            return Math.random() - 0.5;
+        });
+    }
+
     function randomIndex(array) {
         return Math.floor(Math.random() * array.length);
     }
@@ -33,20 +39,17 @@
         "Trên 90%",
     ];
     // Select first type
-
     answerLabels.forEach(function (label) {
-        for (let i = 0; i < firstTypeSelectionsArray.length; i++) {
-            if (
-                label.innerText.trim() ===
-                firstTypeSelectionsArray[randomIndex(firstTypeSelectionsArray)]
-            ) {
+        while (true) {
+            sortArrayRandomly(firstTypeSelectionsArray);
+            if (label.innerText.trim() === firstTypeSelectionsArray[0]) {
                 label.click();
                 break;
             }
         }
     });
 
-    // Chọn cái bảng
+    // Chọn cái bảng - second type
     const secondTypeSelectionsArray = [
         // "answer_cell_00MH01",
         // "answer_cell_00MH02",

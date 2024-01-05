@@ -29,13 +29,12 @@
 ## 🎆 CHỨC NĂNG
 
 -   Chọn ngẫu nhiên `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
--   Chọn đánh giá thứ 4 trong bảng
--   Tự động ấn tiếp tục và submit form
+-   Chọn đánh giá random trong bảng _(Hiện tại đang lựa chọn random 3 hoặc 4)_
+-   Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
 
 ## 📒 TODO
 
--   [ ] Tự động đóng tab khi hoàn thành
--   [ ] Chọn ngẫu nhiên đánh giá trong bảng theo array định sẵn
+-   [ ] Làm GUI cho config selection
 
 > [!NOTE]
 >
