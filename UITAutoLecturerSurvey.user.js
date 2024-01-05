@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.1
+// @version         1.2
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.jpg
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -19,16 +19,13 @@
 (function () {
     "use strict";
 
-    // Random sort the array Function
-    function sortArrayRandomly(array) {
-        return array.sort(function () {
-            return Math.random() - 0.5;
-        });
+    function randomIndex(array) {
+        return Math.floor(Math.random() * array.length);
     }
 
     // Find all tag with class "answertext"
     let answerLabels = document.querySelectorAll("label.answertext");
-    let firstTypeSelectionsArray = [
+    const firstTypeSelectionsArray = [
         ">80%",
         "50-80%",
         "Từ 70 đến dưới 90%",
@@ -37,26 +34,38 @@
     // Select first type
 
     answerLabels.forEach(function (label) {
-        firstTypeSelectionsArray = sortArrayRandomly(firstTypeSelectionsArray);
         for (let i = 0; i < firstTypeSelectionsArray.length; i++) {
-            if (label.innerText.trim() === firstTypeSelectionsArray[i]) {
+            if (
+                label.innerText.trim() ===
+                firstTypeSelectionsArray[randomIndex(firstTypeSelectionsArray)]
+            ) {
                 label.click();
                 break;
             }
         }
     });
 
-    // Trigger onclick on all td tags with class "answer_cell_00MH04 answer-item radio-item"
-    // Chọn full các ô thứ 4 trong table đánh giá
-    let answerCells = document.querySelectorAll(
-        "td.answer_cell_00MH04.answer-item.radio-item"
-    );
-    answerCells.forEach(function (cell) {
-        cell.click();
+    // Chọn cái bảng
+    const secondTypeSelectionsArray = [
+        // "answer_cell_00MH01",
+        // "answer_cell_00MH02",
+        "answer_cell_00MH03",
+        "answer_cell_00MH04",
+    ].map(function (className) {
+        return className + " answer-item radio-item";
+    });
+    let radioLists = document.querySelectorAll(".answers-list.radio-list");
+    radioLists.forEach(function (radioList) {
+        let randomElementClass =
+            secondTypeSelectionsArray[randomIndex(secondTypeSelectionsArray)];
+        let randomElement = radioList.querySelector("." + randomElementClass);
+        if (randomElement) {
+            randomElement.click();
+        }
     });
 
     // Sleep tí
-    setTimeout(function () {}, 100);
+    // setTimeout(function () {}, 100);
 
     // Check for the button with type="submit" and id="movenextbtn"
     // Ấn tiếp tục
@@ -72,5 +81,11 @@
     let submitBtn = document.getElementById("movesubmitbtn");
     if (submitBtn) {
         submitBtn.click();
+    }
+
+    // Close tab if done the form
+    let window = document.querySelector(".site-name");
+    if (window) {
+        window.close();
     }
 })();
