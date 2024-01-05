@@ -16,11 +16,11 @@
 
 ### 1️⃣ Cài đặt extension Tampermonkey
 
--   [![Chrome](https://img.shields.io/badge/Chrome-ffc6ff?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
--   [![Microsoft Edge](https://img.shields.io/badge/Edge-a0c4ff?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
--   [![Safari](https://img.shields.io/badge/Safari-bdb2ff?style=for-the-badge&logo=safari&logoColor=white)](https://apps.apple.com/us/app/tampermonkey/id1482490089)
--   [![Firefox](https://img.shields.io/badge/Firefox-%23ffd6a5?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
--   [![Opera](https://img.shields.io/badge/Opera-ffadad?style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
+- [![Chrome](https://img.shields.io/badge/Chrome-ffc6ff?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
+- [![Microsoft Edge](https://img.shields.io/badge/Edge-a0c4ff?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
+- [![Safari](https://img.shields.io/badge/Safari-bdb2ff?style=for-the-badge&logo=safari&logoColor=white)](https://apps.apple.com/us/app/tampermonkey/id1482490089)
+- [![Firefox](https://img.shields.io/badge/Firefox-%23ffd6a5?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
+- [![Opera](https://img.shields.io/badge/Opera-ffadad?style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
 
 ### 2️⃣ Cài đặt script
 
@@ -28,11 +28,11 @@
 
 ### 3️⃣ Ấn vào khảo sát bất kì
 
--   https://link.uit.edu.vn/khaosatmh
+- https://link.uit.edu.vn/khaosatmh
 
 ### 4️⃣ Tắt script khi không sử dụng
 
--   `Tampermonkey` _(Extension settings)_ > `Dashboard` > `UIT - Auto Lecturer Survey` > Gạt nút tắt
+- `Tampermonkey` _(Extension settings)_ > `Dashboard` > `UIT - Auto Lecturer Survey` > Gạt nút tắt
 
 > [!IMPORTANT]
 >
@@ -40,14 +40,14 @@
 
 ## 🎆 CHỨC NĂNG
 
--   Chọn random `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
--   Chọn đánh giá random trong bảng
-    > Hiện tại đang lựa chọn random 3 hoặc 4. Có thể uncomment trong script ra để tuỳ chỉnh thêm 1 + 2 chẳng hạn
--   Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
+- Chọn random `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
+- Chọn đánh giá random trong bảng
+  > Hiện tại đang lựa chọn random 3 hoặc 4. Có thể uncomment trong script ra để tuỳ chỉnh thêm 1 + 2 chẳng hạn
+- Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
 
 ## 📒 TODO
 
--   [ ] Làm GUI cho config selection
+- [ ] Làm GUI cho config selection
 
 > [!NOTE]
 >
