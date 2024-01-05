@@ -68,7 +68,7 @@
             return className + " answer-item radio-item";
         }
     );
-    let radioLists = document.querySelectorAll(".answers-list.radio-list");
+    const radioLists = document.querySelectorAll(".answers-list.radio-list");
     radioLists.forEach(function (radioList) {
         let randomElementClass =
             secondTypeSelectionsArrayClass[
@@ -85,7 +85,7 @@
     // setTimeout(function () {}, 100);
 
     // Continue to next page
-    let moveNextBtn = document.querySelector(
+    const moveNextBtn = document.querySelector(
         'button[type="submit"][id="movenextbtn"]'
     );
     if (moveNextBtn) {
@@ -93,13 +93,13 @@
     }
 
     // Submit form
-    let submitBtn = document.getElementById("movesubmitbtn");
+    const submitBtn = document.getElementById("movesubmitbtn");
     if (submitBtn) {
         submitBtn.click();
     }
 
     // Close tab when done
-    let doneWindow = document.querySelector(".site-name");
+    const doneWindow = document.querySelector(".site-name");
     if (doneWindow.innerText.trim() === "HOÀN THÀNH KHẢO SÁT") {
         window.close();
     }
