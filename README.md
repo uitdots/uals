@@ -3,6 +3,11 @@
 [![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=CAEDFF)](../../commits/main)
 ![GitHub repo size](https://img.shields.io/github/repo-size/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=D8B4F8)
 [![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=FBF0B2)](../../graphs/contributors)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecturer-survey)
+
+<div align="center">
+  <pre><strong>Tampermonkey Userscript:</strong> Tự động đánh giá giảng viên <em>(khảo sát môn học)</em> UIT</pre>
+</div>
 
 ## 🪴 HƯỚNG DẪN SỬ DỤNG
 
@@ -58,3 +63,4 @@
     <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=KevinNitroG/UIT-Auto-Lecturer-Survey&type=Timeline" />
   </picture>
 </a>
+```
