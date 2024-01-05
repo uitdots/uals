@@ -4,11 +4,12 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.3
+// @version         1.4
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.jpg
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
-// // @run-at       document-idle
+// @run-at          document-idle
+// @grant           window.close
 // @downloadURL     https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UITAutoLecturerSurvey.user.js
 // @updateURL       https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UITAutoLecturerSurvey.user.js
 // @supportURL      mailto:kevinnitro@duck.com
@@ -86,8 +87,8 @@
     }
 
     // Close tab if done the form
-    let window = document.querySelector(".site-name");
-    if (window) {
+    let doneWindow = document.querySelector(".site-name");
+    if (doneWindow.innerText.trim() === "HOÀN THÀNH KHẢO SÁT") {
         window.close();
     }
 })();
