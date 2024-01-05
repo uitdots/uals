@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.9
+// @version         1.10
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -52,7 +52,7 @@
   let answerLabels = document.querySelectorAll('label.answertext');
   answerLabels.forEach(function (label) {
     let firstTypeSelectionsArrayRandom = sortArrayRandomly(
-      firstTypeSelectionsArray,
+      firstTypeSelectionsArray
     );
     for (let i = 0; i < firstTypeSelectionsArrayRandom.length; i++) {
       if (label.innerText.trim() === firstTypeSelectionsArrayRandom[i]) {
@@ -64,9 +64,7 @@
 
   // Select second type questions
   let secondTypeSelectionsArrayClass = secondTypeSelectionsArray.map(
-    function (className) {
-      return className + ' answer-item radio-item';
-    },
+    (className) => `${className} answer-item radio-item`
   );
   const radioLists = document.querySelectorAll('.answers-list.radio-list');
   radioLists.forEach(function (radioList) {
@@ -75,7 +73,7 @@
         randomIndex(secondTypeSelectionsArrayClass)
       ];
     let randomElement = radioList.querySelector(
-      '.' + randomElementClass.replace(/ /g, '.'),
+      '.' + randomElementClass.replace(/ /g, '.')
     );
     if (randomElement) {
       randomElement.click();
@@ -86,7 +84,7 @@
 
   // Continue to next page
   const moveNextBtn = document.querySelector(
-    'button[type="submit"][id="movenextbtn"]',
+    'button[type="submit"][id="movenextbtn"]'
   );
   if (moveNextBtn) {
     moveNextBtn.click();
