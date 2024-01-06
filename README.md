@@ -52,6 +52,7 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 ## 🎆 CHỨC NĂNG
 
+- Nút tự động làm khảo sát tại homepage [`https://student.uit.edu.vn/sinhvien/phieukhaosat`](https://student.uit.edu.vn/sinhvien/phieukhaosat)
 - Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
 - Chọn random `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
   > Có thể tuỳ chỉnh thêm

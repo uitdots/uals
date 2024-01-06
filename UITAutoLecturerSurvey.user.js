@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.11
+// @version         1.12
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -40,7 +40,11 @@ const secondTypeSelectionsArray = [
   'answer_cell_00MH04',
 ];
 
-const timeToSleep = 0;
+// Time duration to process each form from homepage (in ms)
+let processingTimeForEachForm = 0;
+
+// Time duration to sleep for each form before continue to the next page or submit form (in ms)
+const processingTimeBeforeContinueForm = 0;
 
 // ---------- END GLOBAL VARIABLES ----------
 
@@ -57,7 +61,7 @@ function UITAutoLecturerSurveyHomePagePosition() {
 function UITAutoLecturerSurveyParagraph(headElement) {
   const para = document.createElement('p');
   const node = document.createTextNode(
-    '⭐ Bạn đang sử dụng UIT - Auto Lecturer Survey bởi Kevin Nitro 💖'
+    '⭐ UIT - Auto Lecturer Survey - Kevin Nitro 💖'
   );
   para.appendChild(node);
   headElement.appendChild(para);
@@ -66,28 +70,50 @@ function UITAutoLecturerSurveyParagraph(headElement) {
 // Add auto survey button
 function UITAutoLecturerSurveyAddAutoSurveyButton(headElement) {
   const executeButton = document.createElement('button');
-  executeButton.textContent = 'Auto Survey';
+  executeButton.textContent = 'Auto Lecturer Survey';
   executeButton.addEventListener('click', UITAutoLecturerSurveyExecuteURLs);
   headElement.appendChild(executeButton);
 }
 
-// UN-IMPLEMENT FUNCTION - Auto survey
+// Get URLs of forms in homepage
 function UITAutoLecturerSurveyGetURL() {
-  let links = Object.values(
+  // This small script is taken and edited from https://github.com/khanh-moriaty/autosurvey
+  const links = Object.values(
     document.getElementsByTagName('table')[0].getElementsByTagName('a')
   );
   let data = [];
   links.forEach((link) => {
     if (link.innerHTML.includes(' - ')) {
+      // data.push(link);
       data += link;
     }
   });
   return data;
 }
 
-function UITAutoLecturerSurveyExecuteEachURL() {}
-
-function UITAutoLecturerSurveyExecuteURLs() {}
+// Execute URLs of forms in homepage
+function UITAutoLecturerSurveyExecuteURLs() {
+  const links = UITAutoLecturerSurveyGetURL();
+  console.log(links);
+  if (links.length > 0) {
+    if (processingTimeForEachForm < 5000) {
+      processingTimeForEachForm = window.prompt(
+        'Nhập thời gian xử lý mỗi form (ms). Nên >= 5000 tuỳ vào tốc độ mạng và kết nối server. Nếu quá nhanh, chưa kịp xong form cũ sẽ bị lỗi.',
+        '5000'
+      );
+    }
+    links.forEach((link) => {
+      setTimeout(() => {
+        window.open(link.href, '_blank');
+      }, processingTimeForEachForm);
+      window.alert('Done các link khảo sát! 😎');
+    });
+  } else {
+    window.alert(
+      'Không tìm thấy link khảo sát nào! Hoặc bị lỗi thì tạo issue đi bro 😐'
+    );
+  }
+}
 
 // ---------- END HOMEPAGE FUNCTIONS ----------
 
@@ -96,7 +122,7 @@ function UITAutoLecturerSurveyExecuteURLs() {}
 function UITAutoLecturerSurveyRunScript() {
   // Sort array randomly and return array
   function sortArrayRandomly(array) {
-    return array.sort(function () {
+    return array.sort(() => {
       return Math.random() - 0.5;
     });
   }
@@ -107,9 +133,9 @@ function UITAutoLecturerSurveyRunScript() {
   }
 
   // Select first type questions
-  let answerLabels = document.querySelectorAll('label.answertext');
+  const answerLabels = document.querySelectorAll('label.answertext');
   answerLabels.forEach(function (label) {
-    let firstTypeSelectionsArrayRandom = sortArrayRandomly(
+    const firstTypeSelectionsArrayRandom = sortArrayRandomly(
       firstTypeSelectionsArray
     );
     for (let i = 0; i < firstTypeSelectionsArrayRandom.length; i++) {
@@ -121,25 +147,25 @@ function UITAutoLecturerSurveyRunScript() {
   });
 
   // Select second type questions
-  let secondTypeSelectionsArrayClass = secondTypeSelectionsArray.map(
-    (className) => `${className} answer-item radio-item`
+  const secondTypeSelectionsClassArray = secondTypeSelectionsArray.map(
+    (className) => `.${className}answer-item.radio-item`
   );
-  const radioLists = document.querySelectorAll('.answers-list.radio-list');
-  radioLists.forEach(function (radioList) {
-    let randomElementClass =
-      secondTypeSelectionsArrayClass[
-        randomIndex(secondTypeSelectionsArrayClass)
+  const secondTypeQuestions = document.querySelectorAll(
+    '.answers-list.radio-list'
+  );
+  secondTypeQuestions.forEach((secondTypeQuestion) => {
+    const randomElementClass =
+      secondTypeSelectionsClassArray[
+        randomIndex(secondTypeSelectionsClassArray)
       ];
-    let randomElement = radioList.querySelector(
-      '.' + randomElementClass.replace(/ /g, '.')
-    );
+    const randomElement = secondTypeQuestion.querySelector(randomElementClass);
     if (randomElement) {
       randomElement.click();
     }
   });
 
   // Sleep before continue to next page / submit form
-  setTimeout(function () {}, timeToSleep);
+  setTimeout(() => {}, processingTimeBeforeContinueForm);
 
   // Continue to next page
   const moveNextBtn = document.querySelector(
@@ -166,19 +192,15 @@ function UITAutoLecturerSurveyRunScript() {
 
 // ---------- START MAIN FUNCTION ----------
 
-(function () {
+(function UITAutoLecturerSurveyMain() {
   'use strict';
   if (window.location.pathname === '/sinhvien/phieukhaosat') {
     const headElement = UITAutoLecturerSurveyHomePagePosition();
     UITAutoLecturerSurveyParagraph(headElement);
-    // const links = UITAutoLecturerSurveyGetURL();
-    // if (links) {
-    // UITAutoLecturerSurveyAddAutoSurveyButton(headElement);
-    // }
+    UITAutoLecturerSurveyAddAutoSurveyButton(headElement);
   } else {
     UITAutoLecturerSurveyRunScript();
   }
-  console.log(firstTypeSelectionsArray);
 })();
 
 // ---------- END MAIN FUNCTION ----------
