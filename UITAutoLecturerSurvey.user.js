@@ -83,7 +83,7 @@ function UITAutoLecturerSurveyGetURL() {
   );
   let data = [];
   links.forEach((link) => {
-    if (link.innerHTML.includes(' - ')) {
+    if (link.innerHTML.includes('Phiếu khảo sát về môn học - ')) {
       // data.push(link);
       data += link;
     }
