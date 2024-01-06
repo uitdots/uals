@@ -4,7 +4,7 @@
 // @namespace       UIT-KevinNitro
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         1.12
+// @version         1.13
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -40,7 +40,7 @@ const secondTypeSelectionsArray = [
   'answer_cell_00MH04',
 ];
 
-// Time duration to process each form from homepage (in ms)
+// Time duration to process each form from homepage (in s)
 let processingTimeForEachForm = 0;
 
 // Time duration to sleep for each form before continue to the next page or submit form (in ms)
@@ -77,7 +77,7 @@ function UITAutoLecturerSurveyAddAutoSurveyButton(headElement) {
   executeButton.style.color = 'white';
   executeButton.style.marginBottom = '20px';
   executeButton.style.backgroundColor = '#115d9d';
-  executeButton.style.transition = 'background-color 0.3s ease';
+  executeButton.style.transition = 'background-color 0.15s ease';
 
   executeButton.addEventListener('mouseover', () => {
     executeButton.style.backgroundColor = '#1678cb';
@@ -101,8 +101,8 @@ function UITAutoLecturerSurveyGetURL() {
   );
   let data = [];
   links.forEach((link) => {
-    if (link.innerHTML.includes('Phiếu khảo sát về môn học - ')) {
-      // data.push(link);
+    // if (link.innerHTML.match(/.*[Kk]hảo sát( về){0,1}môn học.*/)) {
+    if (link.innerHTML.includes('khảo sát về môn học')) {
       data += link;
     }
   });
@@ -114,12 +114,13 @@ function UITAutoLecturerSurveyExecuteURLs() {
   const links = UITAutoLecturerSurveyGetURL();
   console.log(links);
   if (links.length > 0) {
-    if (processingTimeForEachForm < 5000) {
+    while (processingTimeForEachForm <= 0) {
       processingTimeForEachForm = window.prompt(
-        'Nhập thời gian xử lý mỗi form (ms). Nên >= 5000 tuỳ vào tốc độ mạng và kết nối server. Nếu quá nhanh, chưa kịp xong form cũ sẽ bị lỗi.',
-        '5000'
+        'Nhập thời gian xử lý mỗi form (second). Nên >= 5 tuỳ vào tốc độ mạng và kết nối server. Nếu quá nhanh, chưa kịp xong form cũ sẽ bị lỗi.',
+        '5'
       );
     }
+    processingTimeForEachForm = processingTimeForEachForm * 1000;
     links.forEach((link) => {
       setTimeout(() => {
         window.open(link.href, '_blank');
