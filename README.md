@@ -15,7 +15,7 @@
 ██║   ██║╚════██║██╔══╝  ██╔══██╗╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   
 ╚██████╔╝███████║███████╗██║  ██║███████║╚██████╗██║  ██║██║██║        ██║   
  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   
-<strong>xUIT - AUTO LECTURER SURVEY</strong>
+<strong>UIT - AUTO LECTURER SURVEY</strong>
 Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 </pre>
 
