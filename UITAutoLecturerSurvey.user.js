@@ -71,7 +71,25 @@ function UITAutoLecturerSurveyParagraph(headElement) {
 function UITAutoLecturerSurveyAddAutoSurveyButton(headElement) {
   const executeButton = document.createElement('button');
   executeButton.textContent = 'Auto Lecturer Survey';
+  executeButton.style.padding = '10px 20px';
+  executeButton.style.border = 'none';
+  executeButton.style.borderRadius = '5px';
+  executeButton.style.color = 'white';
+  executeButton.style.marginBottom = '20px';
+  executeButton.style.backgroundColor = '#115d9d';
+  executeButton.style.transition = 'background-color 0.3s ease';
+
+  executeButton.addEventListener('mouseover', () => {
+    executeButton.style.backgroundColor = '#1678cb';
+    executeButton.title =
+      'Tự động làm các form khảo sát giảng viên trên trang này';
+  });
+  executeButton.addEventListener('mouseout', () => {
+    executeButton.style.backgroundColor = '#115d9d';
+    executeButton.title = '';
+  });
   executeButton.addEventListener('click', UITAutoLecturerSurveyExecuteURLs);
+
   headElement.appendChild(executeButton);
 }
 
