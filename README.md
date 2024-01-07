@@ -54,7 +54,7 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 - Nút tự động làm khảo sát tại homepage [`https://student.uit.edu.vn/sinhvien/phieukhaosat`](https://student.uit.edu.vn/sinhvien/phieukhaosat)
 - Nút setting để tuỳ chỉnh
-- Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
+- Tự động ấn tiếp tục, hoàn thành khảo sát, đóng tab khi hoàn thành
 - Chọn random cho khảo sát loại 1
   > Các option: [Xem tại đây](/UITAutoLecturerSurvey.user.js#L26)
 - Chọn random đánh giá 1 → 4 cho khảo sát loại 2
@@ -63,6 +63,7 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 ## 📒 TODO
 
 - [ ] Split first type question
+- [ ] Có cách nào tự động tiếp tục khảo sát tiếp theo sau khi hoàn thành khảo sát, ngoài việc đặt thời gian cụ thể?
 
 > [!NOTE]
 >
