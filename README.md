@@ -35,7 +35,6 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
   - [🎆 CHỨC NĂNG](#-chức-năng)
   - [📒 TODO](#-todo)
   - [📝 LICENSE](#-license)
-  - [](#)
   - [⭐ STAR GRAPH](#-star-graph)
 
 ---
@@ -100,7 +99,9 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 ## 📝 LICENSE
 
-## [![License: MIT](https://img.shields.io/badge/License-MIT-9bf6ff?style=for-the-badge)](./LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-9bf6ff?style=for-the-badge)](./LICENSE)
+
+---
 
 ## ⭐ STAR GRAPH
 
