@@ -26,7 +26,6 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 - [✨ UIT - AUTO LECTURER SURVEY ✨](#-uit---auto-lecturer-survey-)
   - [TABLE OF CONTENTS](#table-of-contents)
   - [⏺️ DEMO](#️-demo)
-  - [Chưa có ní ơi](#chưa-có-ní-ơi)
   - [🪴 HƯỚNG DẪN SỬ DỤNG](#-hướng-dẫn-sử-dụng)
     - [1️⃣ Cài đặt extension Tampermonkey](#1️⃣-cài-đặt-extension-tampermonkey)
     - [2️⃣ Cài script](#2️⃣-cài-script)
@@ -41,7 +40,9 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 ## ⏺️ DEMO
 
-## Chưa có ní ơi
+Chưa có ní ơi
+
+---
 
 ## 🪴 HƯỚNG DẪN SỬ DỤNG
 
