@@ -19,6 +19,10 @@
 Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 </pre>
 
+## ⏺️ DEMO
+
+Chưa có ní ơi
+
 ## 🪴 HƯỚNG DẪN SỬ DỤNG
 
 ### 1️⃣ Cài đặt extension Tampermonkey
@@ -52,13 +56,13 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 ## 🎆 CHỨC NĂNG
 
-- Nút tự động làm khảo sát tại homepage [`https://student.uit.edu.vn/sinhvien/phieukhaosat`](https://student.uit.edu.vn/sinhvien/phieukhaosat)
+- Nút tự động làm khảo sát tại [HOMEPAGE](https://student.uit.edu.vn/sinhvien/phieukhaosat)
 - Nút setting để tuỳ chỉnh
 - Tự động ấn tiếp tục, hoàn thành khảo sát, đóng tab khi hoàn thành
 - Chọn random cho khảo sát loại 1
-  > Các option: [Xem tại đây](/UITAutoLecturerSurvey.user.js#L26)
+  > [Option loại 1](/UITAutoLecturerSurvey.user.js#L26)
 - Chọn random đánh giá 1 → 4 cho khảo sát loại 2
-  > Các option: [Xem tại đây](/UITAutoLecturerSurvey.user.js#L38)
+  > [Option loại 2](/UITAutoLecturerSurvey.user.js#L38)
 
 ## 📒 TODO
 
