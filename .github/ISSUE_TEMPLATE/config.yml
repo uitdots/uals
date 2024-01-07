@@ -2,7 +2,10 @@ blank_issues_enabled: true
 contact_links:
 - name: Facebook
   url: https://www.facebook.com/KevinNitro
+  about: Facebook
 - name: Telegram
   url: https://t.me/KevinNitro
+  about: Telegram
 - name: Mail
   url: mailto:kevinnitro@duck.com
+  about: Mail
