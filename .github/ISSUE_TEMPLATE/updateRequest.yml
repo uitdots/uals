@@ -21,3 +21,5 @@ body:
       options:
         - Co
         - Cothedeonaoduoc
+    validations:
+      required: true
