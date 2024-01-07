@@ -7,19 +7,17 @@ body:
     id: update-description
     attributes:
       label: 🔨 Mô tả cập nhật
-      description: |
-        Markdown is supported
       placeholder: |
         Bạn có thể mô tả cụ thể hơn về sự thay đổi cập nhật này không?
         Ví dụ như element, tag, class, id, ... thay đổi.
     validations:
       required: false
-  - type: checkboxes
+  - type: dropdown
     id: still-working
     attributes:
       label: 🤥 Script vẫn hoạt động?
+      description: |
+        Hiện tại version mới nhất vẫn còn hoạt động?
       options:
-        - label: Có
-          required: false
-        - label: cothedeonaodc
-          required: false
+        - Co
+        - Cothedeonaoduoc
