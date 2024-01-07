@@ -19,9 +19,30 @@
 Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 </pre>
 
+---
+
+## TABLE OF CONTENTS
+
+- [✨ UIT - AUTO LECTURER SURVEY ✨](#-uit---auto-lecturer-survey-)
+  - [TABLE OF CONTENTS](#table-of-contents)
+  - [⏺️ DEMO](#️-demo)
+  - [Chưa có ní ơi](#chưa-có-ní-ơi)
+  - [🪴 HƯỚNG DẪN SỬ DỤNG](#-hướng-dẫn-sử-dụng)
+    - [1️⃣ Cài đặt extension Tampermonkey](#1️⃣-cài-đặt-extension-tampermonkey)
+    - [2️⃣ Cài script](#2️⃣-cài-script)
+    - [3️⃣ Ấn khảo sát](#3️⃣-ấn-khảo-sát)
+    - [4️⃣ Tắt script khi không sử dụng](#4️⃣-tắt-script-khi-không-sử-dụng)
+  - [🎆 CHỨC NĂNG](#-chức-năng)
+  - [📒 TODO](#-todo)
+  - [📝 LICENSE](#-license)
+  - [](#)
+  - [⭐ STAR GRAPH](#-star-graph)
+
+---
+
 ## ⏺️ DEMO
 
-Chưa có ní ơi
+## Chưa có ní ơi
 
 ## 🪴 HƯỚNG DẪN SỬ DỤNG
 
@@ -64,6 +85,8 @@ Chưa có ní ơi
 - Chọn random đánh giá 1 → 4 cho khảo sát loại 2
   > [Option loại 2](/UITAutoLecturerSurvey.user.js#L38)
 
+---
+
 ## 📒 TODO
 
 - [ ] Split first type question
@@ -73,9 +96,11 @@ Chưa có ní ơi
 >
 > 10% não 90% **ChatGPT** & **Copilot** 🫠
 
+---
+
 ## 📝 LICENSE
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-9bf6ff?style=for-the-badge)](./LICENSE)
+## [![License: MIT](https://img.shields.io/badge/License-MIT-9bf6ff?style=for-the-badge)](./LICENSE)
 
 ## ⭐ STAR GRAPH
 
