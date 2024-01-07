@@ -4,7 +4,7 @@
 // @namespace       https://github.com/KevinNitroG
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         2.0
+// @version         2.1
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -238,16 +238,21 @@ function UITAutoLecturerSurveyRunScript() {
 // GM UI to get values and save to GM storage
 function UITAutoLecturerSurveyGMUI() {
   // Function to create H1
-  function createH1(H1Lable) {
+  function createH1(H1Lable, fatherElement) {
     const H1Element = document.createElement('h1');
     H1Element.textContent = H1Lable;
     H1Element.style.fontWeight = 'bold';
     H1Element.style.fontSize = 'larger';
-    gmUIForm.appendChild(H1Element);
+    fatherElement.appendChild(H1Element);
   }
   // Function to create H1 First Type Question
-  function createH1FirstTypeQuestion(H1Lable, GMArrayName, defaultArray) {
-    createH1(H1Lable);
+  function createH1FirstTypeQuestion(
+    H1Lable,
+    GMArrayName,
+    defaultArray,
+    fatherElement
+  ) {
+    createH1(H1Lable, fatherElement);
     const insdeTable = document.createElement('table');
     insdeTable.style.borderCollapse = 'collapse';
     for (const selection of defaultArray) {
@@ -272,7 +277,7 @@ function UITAutoLecturerSurveyGMUI() {
         checkbox.click();
       });
     }
-    gmUIForm.appendChild(insdeTable);
+    fatherElement.appendChild(insdeTable);
   }
 
   // GM UI container
@@ -298,14 +303,16 @@ function UITAutoLecturerSurveyGMUI() {
   createH1FirstTypeQuestion(
     'Câu hỏi loại 1',
     'firstTypeSelectionsArray',
-    defaultFirstTypeSelectionsArray
+    defaultFirstTypeSelectionsArray,
+    gmUIForm
   );
 
   // Second type selections
   createH1FirstTypeQuestion(
     'Câu hỏi loại 2 (Bảng)',
     'secondTypeSelectionsArray',
-    defaultSecondTypeSelectionsArray
+    defaultSecondTypeSelectionsArray,
+    gmUIForm
   );
 
   // Processing time for each form
@@ -419,42 +426,47 @@ function UITAutoLecturerSurveyGMStorageIsEmpty() {
   return (
     GM_getValue('firstTypeSelectionsArray', []).length === 0 &&
     GM_getValue('secondTypeSelectionsArray', []).length === 0 &&
-    GM_getValue('processingTimeForEachForm', '') &&
+    GM_getValue('processingTimeForEachForm', '') === '' &&
     GM_getValue('processingTimeBeforeContinueForm', '') === ''
   );
 }
 
 // ---------- END GM ----------
 
+// ---------- START SUB0MAIN FUNCTIONS ----------
+
+function UITAutoLecturerSurveyAtHomePage() {
+  GM_registerMenuCommand('Variables Setting', UITAutoLecturerSurveyGMUI, {
+    title: 'Variables setting for UIT - Auto Lecturer Survey',
+  });
+  const headElement = UITAutoLecturerSurveyHomePagePosition();
+  UITAutoLecturerSurveyParagraph(headElement);
+  UITAutoLecturerSurveyAddButton(
+    headElement,
+    'Auto Lecturer Survey',
+    'Tự động làm các form khảo sát giảng viên trên trang này',
+    UITAutoLecturerSurveyExecuteURLs
+  );
+  UITAutoLecturerSurveyAddButton(
+    headElement,
+    'Variables Setting',
+    'Chỉnh variables UIT - Auto Lecturer Survey',
+    UITAutoLecturerSurveyGMUI
+  );
+  if (UITAutoLecturerSurveyGMStorageIsEmpty()) {
+    window.alert(
+      'UIT - Auto Lecturer Survey\nTuỳ chọn option trước rồi tính nhen 😇'
+    );
+    UITAutoLecturerSurveyGMUI();
+  }
+}
+
 // ---------- START MAIN FUNCTION ----------
 
 (function UITAutoLecturerSurveyMain() {
   'use strict';
-
+  UITAutoLecturerSurveyAtHomePage();
   if (window.location.pathname === '/sinhvien/phieukhaosat') {
-    GM_registerMenuCommand('Variables Setting', UITAutoLecturerSurveyGMUI, {
-      title: 'Variables setting for UIT - Auto Lecturer Survey',
-    });
-    const headElement = UITAutoLecturerSurveyHomePagePosition();
-    UITAutoLecturerSurveyParagraph(headElement);
-    UITAutoLecturerSurveyAddButton(
-      headElement,
-      'Auto Lecturer Survey',
-      'Tự động làm các form khảo sát giảng viên trên trang này',
-      UITAutoLecturerSurveyExecuteURLs
-    );
-    UITAutoLecturerSurveyAddButton(
-      headElement,
-      'Variables Setting',
-      'Chỉnh variables UIT - Auto Lecturer Survey',
-      UITAutoLecturerSurveyGMUI
-    );
-    if (UITAutoLecturerSurveyGMStorageIsEmpty()) {
-      window.alert(
-        'UIT - Auto Lecturer Survey\nTuỳ chọn option trước rồi tính nhen 😇'
-      );
-      UITAutoLecturerSurveyGMUI();
-    }
   } else {
     UITAutoLecturerSurveyRunScript();
   }
