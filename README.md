@@ -53,15 +53,16 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 ## 🎆 CHỨC NĂNG
 
 - Nút tự động làm khảo sát tại homepage [`https://student.uit.edu.vn/sinhvien/phieukhaosat`](https://student.uit.edu.vn/sinhvien/phieukhaosat)
+- Nút setting để tuỳ chỉnh
 - Tự động ấn tiếp tục, submit form, đóng tab khi hoàn thành
-- Chọn random `>80%`, `50-80%`, `Từ 70 đến dưới 90%`, `Trên 90%`
-  > Có thể tuỳ chỉnh thêm
-- Chọn đánh giá random trong bảng
-  > Hiện tại lựa chọn random 3 hoặc 4. Có thể uncomment trong script để tuỳ chỉnh thêm
+- Chọn random cho khảo sát loại 1
+  > Các option: [Xem tại đây](/UITAutoLecturerSurvey.user.js#L26)
+- Chọn random đánh giá 1 → 4 cho khảo sát loại 2
+  > Các option: [Xem tại đây](/UITAutoLecturerSurvey.user.js#L38)
 
 ## 📒 TODO
 
-- [ ] Làm GUI cho config selection
+- [ ] Split first type question
 
 > [!NOTE]
 >
