@@ -1,17 +1,39 @@
-name: Bug Report
+name: 🐞 Bug Report
 description: Bạn gặp lỗi 😐
 title: "🐛 "
-labels: "Bug"
+labels: ["Bug"]
 body:
   - type: textarea
     id: bug-description
     attributes:
       label: 🐛 Mô tả lỗi
-      description: |
-        Markdown is supported
       placeholder: Bạn gặp lỗi đếch gì voại? 🥱
     validations:
       required: true
+  - type: dropdown
+    id: os
+    attributes:
+      label: 💻 Hệ điều hành
+      description: |
+        Chọn hệ điều hành bạn đang sử dụng
+      options:
+        - Windows
+        - macOS
+        - Linux (Mô tả distro ở khác)
+        - Android
+        - iOS
+        - Khác
+    validations:
+      required: true
+  - type: textarea
+    id: other-os
+    attributes:
+      label: 💻 Hệ điều hành khác
+      description: |
+        Nếu bạn chọn "Khác" ở trên, hãy điền tên hệ điều hành bạn đang sử dụng
+      placeholder: "Ví dụ: Ubuntu, Arch Linux, Manjaro, Cục gạch Nokia..."
+    validations:
+      required: false
   - type: dropdown
     id: browser
     attributes:
@@ -28,9 +50,16 @@ body:
     validations:
       required: true
   - type: textarea
+    id: other-browser
+    attributes:
+      label: 🌏 Trình duyệt khác
+      description: |
+        Nếu bạn chọn "Khác" ở trên, hãy điền tên trình duyệt bạn đang sử dụng
+      placeholder: "Ví dụ: Brave, Vivaldi, Kiwi,..."
+  - type: textarea
     id: note
     attributes:
       label: 📝 Ghi chú
-      description: |
-        Markdown is supported
       placeholder: Bạn có ghi chú gì thêm không?
+    validations:
+      required: false

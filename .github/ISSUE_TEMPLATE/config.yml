@@ -2,4 +2,7 @@ blank_issues_enabled: true
 contact_links:
 - name: Facebook
   url: https://www.facebook.com/KevinNitro
-  about: Liên hệ tui nek
+- name: Telegram
+  url: https://t.me/KevinNitro
+- name: Mail
+  url: mailto:kevinnitro@duck.com

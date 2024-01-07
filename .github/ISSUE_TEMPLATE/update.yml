@@ -1,7 +1,7 @@
-name: Update Request
+name: 🙏 Update Request
 description: Cập nhật khi website trường có thay đổi
 title: "🔨 Cập nhật UserScript"
-labels: "Update"
+labels: ["Update"]
 body:
   - type: textarea
     id: update-description
