@@ -1,0 +1,36 @@
+name: Bug Report
+description: Bạn gặp lỗi 😐
+title: "🐛 "
+labels: "Bug"
+body:
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 🐛 Mô tả lỗi
+      description: |
+        Markdown is supported
+      placeholder: Bạn gặp lỗi đếch gì voại? 🥱
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: 🌏 Trình duyệt
+      description: |
+        Chọn trình duyệt bạn đang sử dụng
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Opera
+        - Khác
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 📝 Ghi chú
+      description: |
+        Markdown is supported
+      placeholder: Bạn có ghi chú gì thêm không?

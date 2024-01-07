@@ -1,0 +1,25 @@
+name: Update Request
+description: Cập nhật khi website trường có thay đổi
+title: "🔨 Cập nhật UserScript"
+labels: "Update"
+body:
+  - type: textarea
+    id: update-description
+    attributes:
+      label: 🔨 Mô tả cập nhật
+      description: |
+        Markdown is supported
+      placeholder: |
+        Bạn có thể mô tả cụ thể hơn về sự thay đổi cập nhật này không?
+        Ví dụ như element, tag, class, id, ... thay đổi.
+    validations:
+      required: false
+  - type: checkboxes
+    id: still-working
+    attributes:
+      label: 🤥 Script vẫn hoạt động?
+      options:
+        - label: Có
+          required: false
+        - label: cothedeonaodc
+          required: false

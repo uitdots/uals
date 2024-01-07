@@ -1,0 +1,23 @@
+name: Feature Request
+description: Đề xuất tính năng
+title: "📈 "
+labels: "Feature"
+body:
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: 📈 Mô tả tính năng
+      description: |
+        Markdown is supported
+      placeholder: Bạn có thể mô tả cụ thể hơn về tính năng này không?
+    validations:
+      required: true
+  - type: textarea
+    id: note
+    attributes:
+      label: 📝 Ghi chú
+      description: |
+        Markdown is supported
+      placeholder: Bạn có ghi chú gì thêm không?
+    validations:
+      required: false
