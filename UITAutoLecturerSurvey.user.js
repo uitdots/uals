@@ -4,7 +4,7 @@
 // @namespace       https://github.com/KevinNitroG
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         2.2
+// @version         2.3
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -150,10 +150,11 @@ function UITAutoLecturerSurveyExecuteURLs() {
 
 function UITAutoLecturerSurveyRunScript() {
   // GM Variables
-  const firstTypeSelectionsArray = GM_getValue(
-    'firstTypeSelectionsArray',
-    defaultFirstTypeSelectionsArray
-  );
+  const firstTypeSelectionsArray = GM_getValue('firstTypeSelectionsArray', [
+    defaultFirstTypeSelectionsArray[2] +
+      defaultFirstTypeSelectionsArray[6] +
+      defaultFirstTypeSelectionsArray[7],
+  ]);
   const secondTypeSelectionsArray = GM_getValue(
     'secondTypeSelectionsArray',
     defaultSecondTypeSelectionsArray.slice(3)
@@ -237,6 +238,7 @@ function UITAutoLecturerSurveyRunScript() {
 
 // GM UI to get values and save to GM storage
 function UITAutoLecturerSurveyGMUI() {
+  console.log('UIT - Auto Lecturer Survey');
   // Function to create H1
   function createH1(H1Lable, fatherElement) {
     const H1Element = document.createElement('h1');
@@ -244,40 +246,6 @@ function UITAutoLecturerSurveyGMUI() {
     H1Element.style.fontWeight = 'bold';
     H1Element.style.fontSize = 'larger';
     fatherElement.appendChild(H1Element);
-  }
-  // Function to create H1 First Type Question
-  function createH1FirstTypeQuestion(
-    H1Lable,
-    GMArrayName,
-    defaultArray,
-    fatherElement
-  ) {
-    createH1(H1Lable, fatherElement);
-    const insdeTable = document.createElement('table');
-    insdeTable.style.borderCollapse = 'collapse';
-    for (const selection of defaultArray) {
-      const row = document.createElement('tr');
-      const optionCell = document.createElement('td');
-      optionCell.textContent = selection;
-      row.appendChild(optionCell);
-      const checkboxCell = document.createElement('td');
-      checkboxCell.style.textAlign = 'right';
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.name = GMArrayName;
-      checkbox.value = selection;
-      checkbox.checked = GM_getValue(GMArrayName, []).includes(selection);
-      checkboxCell.appendChild(checkbox);
-      row.appendChild(checkboxCell);
-      insdeTable.appendChild(row);
-      checkboxCell.addEventListener('click', function () {
-        checkbox.click();
-      });
-      optionCell.addEventListener('click', function () {
-        checkbox.click();
-      });
-    }
-    fatherElement.appendChild(insdeTable);
   }
 
   // GM UI container
@@ -293,30 +261,85 @@ function UITAutoLecturerSurveyGMUI() {
   gmUIContainer.style.zIndex = '9999';
   gmUIContainer.style.height = '25rem';
   gmUIContainer.style.overflow = 'auto';
-  gmUIContainer.style.transition = 'all 0.15s ease';
+  // // Add blur effect to elements outside gmUIContainer
+  // const body = document.querySelector('body');
+  // body.style.filter = 'blur(5px) brightness(0.5)';
+  // // Remove blur effect when gmUIContainer is closed
+  // gmUIContainer.addEventListener('transitionend', function () {
+  //   if (gmUIContainer.style.height === '0px') {
+  //     body.style.filter = 'none';
+  //   }
+  // });
 
   const gmUIForm = document.createElement('form');
   gmUIForm.style.display = 'flex';
   gmUIForm.style.flexDirection = 'column';
 
   // First type selections
-  createH1FirstTypeQuestion(
-    'Câu hỏi loại 1',
-    'firstTypeSelectionsArray',
-    defaultFirstTypeSelectionsArray,
-    gmUIForm
-  );
+  createH1('Khảo sát loại 1', gmUIForm);
+  const firstTypeTable = document.createElement('table');
+  firstTypeTable.style.borderCollapse = 'collapse';
+  for (const selection of defaultFirstTypeSelectionsArray) {
+    const row = document.createElement('tr');
+    const optionCell = document.createElement('td');
+    optionCell.textContent = selection;
+    row.appendChild(optionCell);
+    const checkboxCell = document.createElement('td');
+    checkboxCell.style.textAlign = 'right';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'firstTypeSelectionsArray';
+    checkbox.value = selection;
+    checkbox.checked = GM_getValue('firstTypeSelectionsArray', []).includes(
+      selection
+    );
+    checkboxCell.appendChild(checkbox);
+    row.appendChild(checkboxCell);
+    firstTypeTable.appendChild(row);
+    checkbox.addEventListener('click', () => {
+      checkbox.click();
+    });
+    checkboxCell.addEventListener('click', () => {
+      checkbox.click();
+    });
+    optionCell.addEventListener('click', () => {
+      checkbox.click();
+    });
+  }
+  gmUIForm.appendChild(firstTypeTable);
 
   // Second type selections
-  createH1FirstTypeQuestion(
-    'Câu hỏi loại 2 (Bảng)',
-    'secondTypeSelectionsArray',
-    defaultSecondTypeSelectionsArray,
-    gmUIForm
-  );
+  createH1('Khảo sát loại 2 (Bảng)', gmUIForm);
+  const secondTypeTable = document.createElement('table');
+  secondTypeTable.style.borderCollapse = 'collapse';
+  const secondTypeRow = document.createElement('tr');
+  for (const selection of defaultSecondTypeSelectionsArray) {
+    const checkboxCell = document.createElement('td');
+    checkboxCell.style.textAlign = 'center';
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.name = 'secondTypeSelectionsArray';
+    checkbox.value = selection;
+    checkbox.checked = GM_getValue('secondTypeSelectionsArray', []).includes(
+      selection
+    );
+    const label = document.createElement('label');
+    label.textContent = selection;
+    checkboxCell.appendChild(label);
+    checkboxCell.appendChild(checkbox);
+    checkbox.addEventListener('click', () => {
+      checkbox.click();
+    });
+    checkboxCell.addEventListener('click', () => {
+      checkbox.click();
+    });
+    secondTypeRow.appendChild(checkboxCell);
+  }
+  secondTypeTable.appendChild(secondTypeRow);
+  gmUIForm.appendChild(secondTypeTable);
 
   // Processing time for each form
-  createH1('Thời gian xử lý giữa các form (seconds)');
+  createH1('Thời gian xử lý giữa các form (seconds)', gmUIForm);
 
   const processingTimeForEachFormInput = document.createElement('input');
   processingTimeForEachFormInput.type = 'number';
@@ -329,7 +352,7 @@ function UITAutoLecturerSurveyGMUI() {
   gmUIForm.appendChild(processingTimeForEachFormInput);
 
   // Processing time before continue form
-  createH1('Thời gian next trang của 1 form (milliseconds):');
+  createH1('Thời gian next trang của 1 form (milliseconds)', gmUIForm);
 
   const processingTimeBeforeContinueFormInput = document.createElement('input');
   processingTimeBeforeContinueFormInput.type = 'number';
@@ -346,13 +369,31 @@ function UITAutoLecturerSurveyGMUI() {
   const saveButton = document.createElement('button');
   saveButton.type = 'submit';
   saveButton.textContent = 'Save';
-  gmUIForm.appendChild(saveButton);
 
   // Cancel button
   const cancelButton = document.createElement('button');
   cancelButton.type = 'button';
   cancelButton.textContent = 'Cancel';
-  gmUIForm.appendChild(cancelButton);
+
+  // Create table for save and cancel buttons
+  const saveAndCancelButtonTable = document.createElement('table');
+  saveAndCancelButtonTable.style.verticalAlign = 'middle';
+  saveAndCancelButtonTable.style.width = 'fit-content';
+  saveAndCancelButtonTable.style.margin = 'auto';
+  const saveAndCancelRow = document.createElement('tr');
+  const saveCell = document.createElement('td');
+  saveCell.appendChild(saveButton);
+  const cancelCell = document.createElement('td');
+  cancelCell.appendChild(cancelButton);
+  saveAndCancelRow.appendChild(cancelCell);
+  saveAndCancelRow.appendChild(saveCell);
+  saveAndCancelButtonTable.appendChild(saveAndCancelRow);
+  gmUIForm.appendChild(saveAndCancelButtonTable);
+
+  // Design lỏ message
+  const shitDesignMessage = document.createElement('p');
+  shitDesignMessage.textContent = 'Xin lõi khum biet design UI =))';
+  gmUIForm.appendChild(shitDesignMessage);
 
   gmUIContainer.appendChild(gmUIForm);
   document.body.appendChild(gmUIContainer);
@@ -436,9 +477,6 @@ function UITAutoLecturerSurveyGMStorageIsEmpty() {
 // ---------- START SUB0MAIN FUNCTIONS ----------
 
 function UITAutoLecturerSurveyAtHomePage() {
-  GM_registerMenuCommand('Variables Setting', UITAutoLecturerSurveyGMUI, {
-    title: 'Variables setting for UIT - Auto Lecturer Survey',
-  });
   const headElement = UITAutoLecturerSurveyHomePagePosition();
   UITAutoLecturerSurveyParagraph(headElement);
   UITAutoLecturerSurveyAddButton(
@@ -465,6 +503,9 @@ function UITAutoLecturerSurveyAtHomePage() {
 
 (function UITAutoLecturerSurveyMain() {
   'use strict';
+  GM_registerMenuCommand('Variables Setting', UITAutoLecturerSurveyGMUI, {
+    title: 'Variables setting for UIT - Auto Lecturer Survey',
+  });
   if (window.location.pathname === '/sinhvien/phieukhaosat') {
     UITAutoLecturerSurveyAtHomePage();
   } else {
