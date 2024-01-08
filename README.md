@@ -1,6 +1,8 @@
 # ✨ UIT - AUTO LECTURER SURVEY ✨
 
 [![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=CAEDFF)](../../commits/main)
+![GitHub issues](https://img.shields.io/github/issues-raw/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=ffadad)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=%23ffc6ff)
 ![GitHub repo size](https://img.shields.io/github/repo-size/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=D8B4F8)
 [![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=FBF0B2)](../../graphs/contributors)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecturer-survey)
@@ -21,10 +23,10 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 ---
 
-## TABLE OF CONTENTS
+## 📃 TABLE OF CONTENTS
 
 - [✨ UIT - AUTO LECTURER SURVEY ✨](#-uit---auto-lecturer-survey-)
-  - [TABLE OF CONTENTS](#table-of-contents)
+  - [📃 TABLE OF CONTENTS](#-table-of-contents)
   - [⏺️ DEMO](#️-demo)
   - [🪴 HƯỚNG DẪN SỬ DỤNG](#-hướng-dẫn-sử-dụng)
     - [1️⃣ Cài đặt extension Tampermonkey](#1️⃣-cài-đặt-extension-tampermonkey)
@@ -74,6 +76,8 @@ Chưa có ní ơi
 > [!CAUTION]
 >
 > Vì không rõ các link khảo sát sẽ giống nhau hay không nên thôi tốt nhất tắt khi không sử dụng. Chỉ bật khi làm khảo sát giảng viên thôi 😇
+
+---
 
 ## 🎆 CHỨC NĂNG
 

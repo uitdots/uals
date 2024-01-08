@@ -1,7 +1,7 @@
 name: 💫 Feature Request
 description: Đề xuất tính năng
-title: "📈 "
-labels: ["Feature"]
+title: "✨ "
+labels: ["enhancement"]
 body:
   - type: textarea
     id: feature-description

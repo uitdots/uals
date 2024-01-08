@@ -1,7 +1,7 @@
 name: 🐞 Bug Report
-description: Bạn gặp lỗi 😐
+description: Bạn đang gặp lỗi 😐
 title: "🐛 "
-labels: ["Bug"]
+labels: ["bug"]
 body:
   - type: textarea
     id: bug-description
@@ -10,49 +10,45 @@ body:
       placeholder: Bạn gặp lỗi đếch gì voại? 🥱
     validations:
       required: true
-  - type: dropdown
+  - type: checkboxes
     id: os
     attributes:
       label: 💻 Hệ điều hành
       description: |
         Chọn hệ điều hành bạn đang sử dụng
       options:
-        - Windows
-        - macOS
-        - Linux (Mô tả distro ở khác)
-        - Android
-        - iOS
-        - Khác
-    validations:
-      required: true
+        - label: Windows
+        - label: macOS
+        - label: Linux
+        - label: Android
+        - label: iOS / iPadOS
+        - label: Khác
   - type: textarea
     id: other-os
     attributes:
-      label: 💻 Hệ điều hành khác
+      label: 🖥️ Hệ điều hành khác
       description: |
         Nếu bạn chọn "Khác" ở trên, hãy điền tên hệ điều hành bạn đang sử dụng
       placeholder: "Ví dụ: Ubuntu, Arch Linux, Manjaro, Cục gạch Nokia..."
     validations:
       required: false
-  - type: dropdown
+  - type: checkboxes
     id: browser
     attributes:
       label: 🌏 Trình duyệt
       description: |
         Chọn trình duyệt bạn đang sử dụng
       options:
-        - Chrome
-        - Firefox
-        - Safari
-        - Edge
-        - Opera
-        - Khác
-    validations:
-      required: true
+        - label: Chrome
+        - label: Firefox
+        - label: Edge
+        - label: Safari
+        - label: Opera
+        - label: Khác
   - type: textarea
     id: other-browser
     attributes:
-      label: 🌏 Trình duyệt khác
+      label: 👽 Trình duyệt khác
       description: |
         Nếu bạn chọn "Khác" ở trên, hãy điền tên trình duyệt bạn đang sử dụng
       placeholder: "Ví dụ: Brave, Vivaldi, Kiwi,..."

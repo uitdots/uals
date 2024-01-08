@@ -1,7 +1,7 @@
 name: 🙏 Update Request
 description: Cập nhật khi website trường có thay đổi
 title: "🔨 Cập nhật UserScript"
-labels: ["Update"]
+labels: ["uit-update"]
 body:
   - type: textarea
     id: update-description
@@ -9,7 +9,7 @@ body:
       label: 🔨 Mô tả cập nhật
       placeholder: |
         Bạn có thể mô tả cụ thể hơn về sự thay đổi cập nhật này không?
-        Ví dụ như element, tag, class, id, ... thay đổi.
+        Hoặc cụ thể ví dụ như element, tag, class, id, ... thay đổi.
     validations:
       required: false
   - type: dropdown
