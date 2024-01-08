@@ -1,8 +1,12 @@
 name: 🙏 Update Request
 description: Cập nhật khi website trường có thay đổi
-title: "🔨 Cập nhật UserScript"
+title: "🔨 Cập nhật UserScript <-> UIT website"
 labels: ["uit-update"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Vui lòng giữ nguyên tiêu đề, không thay đổi ‼️
   - type: textarea
     id: update-description
     attributes:

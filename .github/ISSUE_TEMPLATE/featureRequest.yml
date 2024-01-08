@@ -3,6 +3,10 @@ description: Đề xuất tính năng
 title: "✨ "
 labels: ["enhancement"]
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Vui lòng giữ emoji "✨" ở tiêu đề
   - type: textarea
     id: feature-description
     attributes:

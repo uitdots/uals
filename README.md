@@ -96,10 +96,6 @@ Chưa có ní ơi
 - [ ] Split first type question
 - [ ] Có cách nào tự động tiếp tục khảo sát tiếp theo sau khi hoàn thành khảo sát, ngoài việc đặt thời gian cụ thể?
 
-> [!NOTE]
->
-> 10% não 90% **ChatGPT** & **Copilot** 🫠
-
 ---
 
 ## 📝 LICENSE
