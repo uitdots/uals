@@ -1,15 +1,5 @@
 # ✨ UIT - AUTO LECTURER SURVEY ✨
 
-[![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=CAEDFF)](../../commits/main)
-![GitHub issues](https://img.shields.io/github/issues-raw/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=ffadad)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=%23ffc6ff)
-![GitHub repo size](https://img.shields.io/github/repo-size/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=D8B4F8)
-[![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=FBF0B2)](../../graphs/contributors)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecturer-survey)
-
-[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
-[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
-
 <pre align="center">
 ██╗   ██╗███████╗███████╗██████╗ ███████╗ ██████╗██████╗ ██╗██████╗ ████████╗
 ██║   ██║██╔════╝██╔════╝██╔══██╗██╔════╝██╔════╝██╔══██╗██║██╔══██╗╚══██╔══╝
@@ -17,9 +7,20 @@
 ██║   ██║╚════██║██╔══╝  ██╔══██╗╚════██║██║     ██╔══██╗██║██╔═══╝    ██║   
 ╚██████╔╝███████║███████╗██║  ██║███████║╚██████╗██║  ██║██║██║        ██║   
  ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝╚═╝        ╚═╝   
-<strong>UIT - AUTO LECTURER SURVEY</strong>
-Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
+<strong>UIT - AUTO LECTURER SURVEY</strong> <em>(UALS)</em>
+Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> cho sinh viên trường UIT
 </pre>
+
+[![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=CAEDFF)](../../commits/main)
+![GitHub issues](https://img.shields.io/github/issues-raw/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=ffadad)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=%23ffc6ff)
+![GitHub repo size](https://img.shields.io/github/repo-size/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=D8B4F8)
+[![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge&color=FBF0B2)](../../graphs/contributors)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecturer-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecturer-survey)
+[![wakatime](https://wakatime.com/badge/github/KevinNitroG/UIT-Auto-Lecturer-Survey.svg?style=for-the-badge)](https://wakatime.com/badge/github/KevinNitroG/UIT-Auto-Lecturer-Survey)
+
+[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
+[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
 
 ---
 
@@ -27,26 +28,49 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> UIT
 
 - [✨ UIT - AUTO LECTURER SURVEY ✨](#-uit---auto-lecturer-survey-)
   - [📃 TABLE OF CONTENTS](#-table-of-contents)
-  - [⏺️ DEMO](#️-demo)
-  - [🪴 HƯỚNG DẪN SỬ DỤNG](#-hướng-dẫn-sử-dụng)
+  - [🎆 CHỨC NĂNG](#-chức-năng)
+  - [🥂 DEMO](#-demo)
+    - [🖼️ Image](#️-image)
+    - [🎬 Video](#-video)
+  - [🪴 HƯỚNG DẪN](#-hướng-dẫn)
     - [1️⃣ Cài đặt extension Tampermonkey](#1️⃣-cài-đặt-extension-tampermonkey)
     - [2️⃣ Cài script](#2️⃣-cài-script)
     - [3️⃣ Ấn khảo sát](#3️⃣-ấn-khảo-sát)
     - [4️⃣ Tắt script khi không sử dụng](#4️⃣-tắt-script-khi-không-sử-dụng)
-  - [🎆 CHỨC NĂNG](#-chức-năng)
   - [📒 TODO](#-todo)
   - [📝 LICENSE](#-license)
   - [⭐ STAR GRAPH](#-star-graph)
 
 ---
 
-## ⏺️ DEMO
+## 🎆 CHỨC NĂNG
+
+- Nút tự động làm khảo sát tại [HOMEPAGE](https://student.uit.edu.vn/sinhvien/phieukhaosat)
+- Nút setting để tuỳ chỉnh option tự động chọn
+- Chọn random cho khảo sát loại 1
+  > [Option loại 1](/UITAutoLecturerSurvey.user.js#L26)
+- Chọn random đánh giá 1 → 4 cho khảo sát loại 2
+  > [Option loại 2](/UITAutoLecturerSurvey.user.js#L38)
+- Tự động ấn tiếp tục, hoàn thành khảo sát, đóng tab khi hoàn thành
+
+---
+
+## 🥂 DEMO
+
+### 🖼️ Image
+
+- Home Page
+  ![Home Page Demo Image](assets/Image/HomePage.png)
+- Home Page - Setting
+  ![Home Page - Setting Demo Image](assets/Image/HomePage-Setting.png)
+
+### 🎬 Video
 
 Chưa có ní ơi
 
 ---
 
-## 🪴 HƯỚNG DẪN SỬ DỤNG
+## 🪴 HƯỚNG DẪN
 
 ### 1️⃣ Cài đặt extension Tampermonkey
 
@@ -62,12 +86,16 @@ Chưa có ní ơi
 
 ### 3️⃣ Ấn khảo sát
 
-- https://link.uit.edu.vn/khaosatmh
-- https://student.uit.edu.vn/sinhvien/phieukhaosat
+1. Vào trang khảo sát _(1 trong 2 link)_
+   - https://link.uit.edu.vn/khaosatmh
+   - https://student.uit.edu.vn/sinhvien/phieukhaosat
+2. 2 kiểu:
+   - Ấn `Auto Lecturer Survey` để tự động làm hết khảo sát
+   - Ấn từng link khảo sát để làm
 
 > [!NOTE]
 >
-> Tùm lum link ai biết link nào đâu 😐
+> Nếu muốn tự làm khảo sát thì cần tắt userscript hoặc tắt extension Tampermonkey trước
 
 ### 4️⃣ Tắt script khi không sử dụng
 
@@ -76,18 +104,6 @@ Chưa có ní ơi
 > [!CAUTION]
 >
 > Vì không rõ các link khảo sát sẽ giống nhau hay không nên thôi tốt nhất tắt khi không sử dụng. Chỉ bật khi làm khảo sát giảng viên thôi 😇
-
----
-
-## 🎆 CHỨC NĂNG
-
-- Nút tự động làm khảo sát tại [HOMEPAGE](https://student.uit.edu.vn/sinhvien/phieukhaosat)
-- Nút setting để tuỳ chỉnh
-- Tự động ấn tiếp tục, hoàn thành khảo sát, đóng tab khi hoàn thành
-- Chọn random cho khảo sát loại 1
-  > [Option loại 1](/UITAutoLecturerSurvey.user.js#L26)
-- Chọn random đánh giá 1 → 4 cho khảo sát loại 2
-  > [Option loại 2](/UITAutoLecturerSurvey.user.js#L38)
 
 ---
 
