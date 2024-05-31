@@ -4,7 +4,7 @@
 // @namespace       https://github.com/KevinNitroG
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         2.5
+// @version         2.6
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -137,8 +137,11 @@ function UITAutoLecturerSurveyExecuteURLs() {
     const processLinks = async () => {
       for (let i = 0; i < links.length; i++) {
         await new Promise((resolve) => {
-          setTimeout(() => {
+          setTimeout(async () => {
             GM_openInTab(links[i].href);
+            await new Promise((innerResolve) => {
+              setTimeout(innerResolve, processingTimeForEachForm);
+            });
             resolve();
           }, processingTimeForEachForm * i);
         });
