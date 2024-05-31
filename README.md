@@ -22,6 +22,12 @@ Tự động khảo sát giảng viên <em>(khảo sát môn học)</em> cho sin
 [![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
 [![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecturer-Survey/)
 
+> [!IMPORTANT]
+>
+> Cần lắm người đập đi xây lại hộ. Chính tôi còn không biết tôi viết cái gì 😐
+>
+> Tôi không biết code JS
+
 ---
 
 ## 📃 TABLE OF CONTENTS
@@ -94,6 +100,10 @@ Chưa có ní ơi
    - Ấn từng link khảo sát để làm
 
 > [!NOTE]
+>
+> Khuyến khích config variable như lày
+>
+> ![sample-variable-config](./assets/Image/sample-variables-setup.png)
 >
 > Nếu muốn tự làm khảo sát thì cần tắt userscript hoặc tắt extension Tampermonkey trước
 
