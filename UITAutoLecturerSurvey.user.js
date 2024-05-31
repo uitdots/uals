@@ -4,7 +4,7 @@
 // @namespace       https://github.com/KevinNitroG
 // @description     Tự động đánh giá khảo sát giảng viên UIT. vui lòng disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường
 // @license         https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/LICENSE
-// @version         2.4
+// @version         2.5
 // @icon            https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UIT-logo.png
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -14,7 +14,8 @@
 // @grant           GM_setValue
 // @grant           GM_getValue
 // @grant           GM_addStyle
-// @grant           GM_registerMenuCommand
+// @grant          GM_openInTab
+// @grant          GM_registerMenuCommand
 // @downloadURL     https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UITAutoLecturerSurvey.user.js
 // @updateURL       https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/raw/main/UITAutoLecturerSurvey.user.js
 // @supportURL      https://github.com/KevinNitroG/UIT-Auto-Lecturer-Survey/issues
@@ -107,7 +108,7 @@ function UITAutoLecturerSurveyGetURL() {
   links.forEach((link) => {
     // if (link.innerHTML.match(/.*[Kk]hảo sát( về){0,1}môn học.*/)) {
     if (link.innerHTML.includes('khảo sát về môn học')) {
-      data += link;
+      data.push(link);
     }
   });
   return data;
@@ -133,10 +134,17 @@ function UITAutoLecturerSurveyExecuteURLs() {
 
   const links = UITAutoLecturerSurveyGetURL();
   if (links.length > 0) {
-    links.forEach((link) => {
-      setTimeout(() => {
-        window.open(link.href, '_blank');
-      }, processingTimeForEachForm);
+    const processLinks = async () => {
+      for (let i = 0; i < links.length; i++) {
+        await new Promise((resolve) => {
+          setTimeout(() => {
+            GM_openInTab(links[i].href);
+            resolve();
+          }, processingTimeForEachForm * i);
+        });
+      }
+    };
+    processLinks().then(() => {
       window.alert('Done các link khảo sát! 😎');
     });
   } else {
