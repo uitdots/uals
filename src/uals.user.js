@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.1
+// @version         3.0.0-dev.2
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -13,6 +13,8 @@
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
 // @match           http*://survey.uit.edu.vn/index.php/survey/index/sid/*/token/*
+// @grant           GM_addValueChangeListener
+// @grant           GM_removeValueChangeListener
 // @grant           GM_addStyle
 // @grant           GM_deleteValue
 // @grant           GM_getValue
@@ -28,36 +30,61 @@
 
   const SELECTIONS = {
     first: {
-      opts: [
-        { label: '<50%', selector: '' },
-        { label: '50-80%', selector: '' },
-        { label: '>80%', selector: '' },
-        { label: 'Không biết chuẩn đầu ra là gì', selector: '' },
+      question: 'Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này',
+      rawQuestion: '*Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này\n',
+      answers: [
+        { label: '<50%', selector: 'ul:nth-child(1) input' },
+        { label: '50-80%', selector: 'ul:nth-child(2) input' },
+        { label: '>80%', selector: 'ul:nth-child(3) input' },
       ],
     },
     second: {
-      opts: [
-        { label: 'Dưới 50%', selector: '' },
-        { label: 'Từ 50 đến dưới 70%', selector: '' },
-        { label: 'Từ 70 đến dưới 90%', selector: '' },
-        { label: 'Trên 90%', selector: '' },
+      question:
+        'Anh chị tự đánh giá đạt được bao nhiêu % chuẩn đầu ra của môn học này',
+      rawQuestion:
+        '*Anh chị tự đánh giá đạt được bao nhiêu % chuẩn đầu ra của môn học này:\n',
+      answers: [
+        {
+          label: 'Không biết chuẩn đầu ra là gì',
+          selector: 'ul:nth-child(1) li:nth-child(1) input',
+        },
+        {
+          label: 'Dưới 50%',
+          selector: 'ul:nth-child(1) li:nth-child(2) input',
+        },
+        {
+          label: 'Từ 50 đến dưới 70%',
+          selector: 'ul:nth-child(1) li:nth-child(3) input',
+        },
+        {
+          label: 'Từ 70 đến dưới 90%',
+          selector: 'ul:nth-child(2) li:nth-child(1) input',
+        },
+        {
+          label: 'Trên 90%',
+          selector: 'ul:nth-child(2) li:nth-child(2) input',
+        },
       ],
     },
     third: {
-      container: '.answers-list.radio-list',
-      opts: [
-        { selector: 'answer_cell_00MH01.answer-item.radio-item' },
-        { selector: 'answer_cell_00MH02.answer-item.radio-item' },
-        { selector: 'answer_cell_00MH03.answer-item.radio-item' },
-        { selector: 'answer_cell_00MH04.answer-item.radio-item' },
+      question: 'Đánh giá về hoạt động giảng dạy trực tuyến của Giảng viên',
+      container:
+        'table[summary="Đánh giá về hoạt động giảng dạy trực tuyến của Giảng viên - an array type question"] .answers-list.radio-list',
+      answers: [
+        { selector: '.answer_cell_00MH01.answer-item.radio-item' },
+        { selector: '.answer_cell_00MH02.answer-item.radio-item' },
+        { selector: '.answer_cell_00MH03.answer-item.radio-item' },
+        { selector: '.answer_cell_00MH04.answer-item.radio-item' },
       ],
     },
   };
 
   const BROADCAST_CHANNEL_NAME = 'uals';
 
-  const SUBMIT_BUTTON_SELECTOR = 'button[type="submit"][id="movenextbtn"]';
+  const CONTINUE_BUTTON_SELECTOR = 'button[type="submit"][id="movenextbtn"]';
+  const SUBMIT_BUTTON_SELECT = '#movesubmitbtn';
 
+  const GM_BROADCAST_KEY_NAME = 'broadcast';
   const SURVEY_DONE_MSG = 'uals-survey-done';
   const SURVEY_FAIL_MSG = 'uals-survey-fail';
   const WINDOW_DONE_TITLE = 'HOÀN THÀNH KHẢO SÁT';
@@ -68,7 +95,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // border: solid #115d9d 0.05rem;
     }
 
     .uals__btn-container {
@@ -130,21 +156,23 @@
     }
   `;
 
+  function getRandomElement(array) {
+    const randomIndex = Math.floor(Math.random() * array.length);
+    return array[randomIndex];
+  }
+
   class Model {
     #firstOpts;
     #secondOpts;
     #thirdOpts;
-    #firstOptsKey;
-    #secondOptsKey;
-    #thirdOptsKey;
+    static #firstOptsKey = 'userFirstOpts';
+    static #secondOptsKey = 'usersecondOpts';
+    static #thirdOptsKey = 'userthirdOpts';
 
     constructor() {
-      this.#firstOptsKey = 'userFirstOpts';
-      this.#secondOptsKey = 'usersecondOpts';
-      this.#thirdOptsKey = 'userthirdOpts';
-      this.#firstOpts = GM_getValue(this.#firstOptsKey, []);
-      this.#secondOpts = GM_getValue(this.#secondOptsKey, []);
-      this.#thirdOpts = GM_getValue(this.#thirdOptsKey, []);
+      this.#firstOpts = GM_getValue(Model.#firstOptsKey, []);
+      this.#secondOpts = GM_getValue(Model.#secondOptsKey, []);
+      this.#thirdOpts = GM_getValue(Model.#thirdOptsKey, []);
     }
 
     addStyles() {
@@ -166,9 +194,9 @@
     }
 
     saveUserOpts() {
-      GM_setValue(this.#firstOptsKey, this.#firstOpts);
-      GM_setValue(this.#secondOptsKey, this.#secondOpts);
-      GM_setValue(this.#thirdOptsKey, this.#thirdOpts);
+      GM_setValue(Model.#firstOptsKey, this.#firstOpts);
+      GM_setValue(Model.#secondOptsKey, this.#secondOpts);
+      GM_setValue(Model.#thirdOptsKey, this.#thirdOpts);
     }
 
     deleteUserOpts() {
@@ -188,6 +216,7 @@
           text: 'Bạn cần thiết lập các tuỳ chọn 🥵',
           title: 'UALS',
           tag: 'uals-require_config',
+          timeout: 5000,
         });
         return false;
       }
@@ -196,78 +225,84 @@
   }
 
   class BroadcastSvc {
-    #channel;
+    #id;
 
-    constructor() {
-      this.#channel = new BroadcastChannel(BROADCAST_CHANNEL_NAME);
-    }
-
-    addReceiveMsgListener(callback) {
-      const handleEvent = (ev) => {
-        switch (ev?.data?.msg) {
-          case SURVEY_DONE_MSG:
-            callback();
-            break;
-          case SURVEY_FAIL_MSG:
-            this.removeReceiveMsgListener();
-            break;
-        }
-      };
-      this.#channel.addEventListener('message', handleEvent);
+    constructor(callback) {
+      this.#id = GM_addValueChangeListener(GM_BROADCAST_KEY_NAME, callback);
     }
 
     removeReceiveMsgListener() {
-      this.#channel.close();
+      GM_deleteValue(GM_BROADCAST_KEY_NAME);
+      GM_removeValueChangeListener(this.#id);
     }
 
-    sendDoneMsg() {
-      this.#channel.postMessage({ msg: SURVEY_DONE_MSG });
+    static sendDone() {
+      GM_setValue(GM_BROADCAST_KEY_NAME, BroadcastSvc._genRandomVal());
     }
 
-    sendFailMsg() {
-      this.#channel.postMessage({ msg: SURVEY_FAIL_MSG });
+    static _genRandomVal() {
+      const min = Number.MIN_SAFE_INTEGER; // -9007199254740991
+      const max = Number.MAX_SAFE_INTEGER; //  9007199254740991
+
+      let val;
+      do {
+        val = Math.floor(Math.random() * (max - min + 1)) + min;
+      } while (val === GM_getValue);
+      return val;
     }
   }
 
   class DoSurvey {
-    #broadcast;
-    #firstOpts;
-    #secondOpts;
+    #answerTables;
+    firstOpt;
+    secondOpt;
     #thirdOpts;
 
     constructor() {
-      this.#broadcast = BroadcastSvc();
-      const {
-        firstOpt: firstOpts,
-        secondOpts,
-        thirdOpts,
-      } = new Model().getUserOpts();
-      this.#firstOpts = firstOpts;
-      this.#secondOpts = secondOpts;
+      const { firstOpts, secondOpts, thirdOpts } = new Model().getUserOpts();
+      this.firstOpt = getRandomElement(firstOpts);
+      this.secondOpt = getRandomElement(secondOpts);
       this.#thirdOpts = thirdOpts;
+      this.#answerTables = [
+        ...document.querySelectorAll('table.question-wrapper'),
+      ];
       this._run();
     }
 
-    static getRandomElement(array) {
-      const randomIndex = Math.floor(Math.random() * array.length);
-      return array[randomIndex];
-    }
-
-    // TODO: WIP. Check this again. Be careful of value and index. It should be value
-    /** Fill in the first type */
-    _firstTypeRun() {
-      const labels = document.querySelectorAll('label.answertext');
-      for (const label of labels) {
-        if (label.innerText.trim() === this.#firstOpts) {
-          label.click();
-        }
+    continueOnWelcome() {
+      const welcomeTable = document.querySelector('table.welcome-table');
+      if (!welcomeTable) {
+        return;
       }
+      this._continue();
     }
 
-    // TODO: WIP. Find questions and each in question, select 1 random.
-    /** Fill in the second type */
+    _firstTypeRun() {
+      const table = this.#answerTables.find(
+        (table) =>
+          table.querySelector('tr').innerText === SELECTIONS.first.rawQuestion,
+      );
+      if (!table) {
+        return false;
+      }
+      table
+        .querySelector(SELECTIONS.first.answers[this.firstOpt].selector)
+        .click();
+      return true;
+    }
+
     _secondTypeRun() {
-      // const labels = document.querySelectorAll('label.answertext');
+      const table = this.#answerTables.find(
+        (table) =>
+          table.querySelector('tr').innerText === SELECTIONS.second.rawQuestion,
+      );
+      if (!table) {
+        return false;
+      }
+      table
+        .querySelector(SELECTIONS.second.answers[this.secondOpt].selector)
+        .click();
+      return true;
     }
 
     _thirdTypeRun() {
@@ -278,15 +313,16 @@
       questions.forEach((question) =>
         question
           .querySelector(
-            SELECTIONS.third.opts[DoSurvey.getRandomElement(this.#thirdOpts)],
+            SELECTIONS.third.answers[getRandomElement(this.#thirdOpts)]
+              .selector,
           )
           .click(),
       );
       return true;
     }
 
-    _submit() {
-      document.querySelector(SUBMIT_BUTTON_SELECTOR)?.click();
+    _continue() {
+      document.querySelector(CONTINUE_BUTTON_SELECTOR).click();
     }
 
     _done() {
@@ -294,59 +330,60 @@
         document.querySelector('.site-name')?.innerText.trim() ===
         WINDOW_DONE_TITLE
       ) {
-        this.#broadcast.sendDoneMsg();
+        BroadcastSvc.sendDone();
         window.close();
       }
     }
 
     _run() {
+      this.continueOnWelcome();
       this._done();
       let check = false;
       check = this._firstTypeRun() || check;
       check = this._secondTypeRun() || check;
       check = this._thirdTypeRun() || check;
       if (check) {
-        this._submit();
+        this._continue();
       } else {
-        this.#broadcast.sendFailMsg();
+        const submitBtn = document.querySelector(SUBMIT_BUTTON_SELECT);
+        submitBtn.click();
       }
     }
   }
 
   class AutoRun {
+    #broadCast;
     #surveys;
     #current;
-    #broadcast;
 
     constructor(surveys) {
       this.#surveys = surveys;
       this.#current = 0;
-      this.#broadcast = BroadcastSvc();
-      // this._iterateSurvey = this._iterateSurvey.bind(this); // Copilot told me to do this. IDK why :v
-      this.#broadcast.addReceiveMsgListener(() => {
-        window.addEventListener('beforeunload', this._confirmCloseTab);
-        this._iterateSurvey();
-      });
+      window.addEventListener('beforeunload', this._confirmCloseTab);
+      this.#broadCast = new BroadcastSvc(() => this._iterateSurvey());
       this._run();
     }
 
     _iterateSurvey() {
       this.#current++;
-      if (this.#current >= this.#surveys.length) {
+      if (this.#current < this.#surveys.length) {
+        this._run();
+      } else {
         window.removeEventListener('beforeunload', this._confirmCloseTab);
         GM_notification({
           text: 'Đã hoàn thành xong tất cả các khảo sát 😇',
           title: 'UALS',
           tag: 'uals-auto_survey_done',
+          timeout: 5000,
         });
-        this.#broadcast.removeReceiveMsgListener();
-      } else {
-        this._run();
+        this.#broadCast.removeReceiveMsgListener();
       }
     }
 
     _run() {
-      GM_openInTab(this.#surveys[this.#current], true);
+      GM_openInTab(this.#surveys[this.#current], {
+        active: false,
+      });
     }
 
     _confirmCloseTab(e) {
@@ -401,6 +438,7 @@
             text: 'Bạn đã dùng Auto Run rồi. Hãy refresh trang để refresh',
             title: 'UALS',
             tag: 'uals-already_auto_run',
+            timeout: 5000,
           });
           return;
         }
@@ -449,11 +487,10 @@
     configMenuHTML() {
       return `
         <div id="uals__menu-container">
-          ${this._pleaseStarHTML()}
           <section class="uals__question-section">
-            <h3 id="uals__menu-header">Chọn câu trả lời cho câu hỏi loại 1</h3>
+            <h3 id="uals__menu-header">${SELECTIONS.first.question}</h3>
             <form class="uals__form-select" id="uals__select-1">
-              ${SELECTIONS.first.opts
+              ${SELECTIONS.first.answers
                 .map(
                   (opt, index) =>
                     `
@@ -465,9 +502,9 @@
             </form>
           </section>
           <section class="uals__question-section">
-            <h3 id="uals__menu-header">Chọn câu trả lời cho câu hỏi loại 2</h3>
+            <h3 id="uals__menu-header">${SELECTIONS.second.question}</h3>
             <form class="uals__form-select" id="uals__select-2">
-              ${SELECTIONS.second.opts
+              ${SELECTIONS.second.answers
                 .map(
                   (opt, index) =>
                     `
@@ -480,15 +517,14 @@
           </section>
           <section class="uals__question-section">
             <h3 id="uals__menu-header">
-              Chọn câu trả lời cho câu hỏi loại 3 (mức độ hài lòng)
+              ${SELECTIONS.third.question}
             </h3>
             <form class="uals__form-select" id="uals__select-3">
-              ${SELECTIONS.third.opts
+              ${SELECTIONS.third.answers
                 .map((_, index) => {
-                  const level = index + 1;
                   return `
-                  <input type="checkbox" name="uals__select-3-${level}" id="uals__select-3-${level}" value="${level}" />
-                  <label for="uals__select-3-${level}">Mức ${level}</label>
+                  <input type="checkbox" name="uals__select-3-${index}" id="uals__select-3-${index}" value="${index}" />
+                  <label for="uals__select-3-${index}">Mức ${index + 1}</label>
                 `;
                 })
                 .join('')}
@@ -509,12 +545,17 @@
     }
 
     tickOptsToPage() {
-      Object.values(this.#model.getUserOpts()).forEach((opts, selectionIndex) =>
-        opts.forEach((opt) =>
-          document
-            .querySelector(`#uals__select-${selectionIndex + 1}-${opt}`)
-            .click(),
-        ),
+      Object.values(this.#model.getUserOpts()).forEach(
+        (opts, selectionIndex) => {
+          if (!opts) {
+            return;
+          }
+          opts.forEach((opt) =>
+            document
+              .querySelector(`#uals__select-${selectionIndex + 1}-${opt}`)
+              .click(),
+          );
+        },
       );
     }
 
@@ -582,9 +623,9 @@
 
     static _getSurveyURLs() {
       const urls = [...document.querySelectorAll('table a')];
-      return urls.filter((url) =>
-        url.innerHTML.includes('khảo sát về môn học'),
-      );
+      return urls
+        .filter((url) => url.innerHTML.includes('khảo sát về môn học'))
+        .map((url) => url.getAttribute('href'));
     }
 
     _getContainer() {
