@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.4
+// @version         3.0.0-dev.5
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -79,8 +79,6 @@
     },
   };
 
-  const BROADCAST_CHANNEL_NAME = 'uals';
-
   const CONTINUE_BUTTON_SELECTOR = 'button[type="submit"][id="movenextbtn"]';
   const SUBMIT_BUTTON_SELECT = '#movesubmitbtn';
 
@@ -153,6 +151,8 @@
       vertical-align: middle;
     }
   `;
+
+  // NOTE: Some of methods can be marked as static but I'm too tired to try and check if it works or not
 
   function getRandomElement(array) {
     const randomIndex = Math.floor(Math.random() * array.length);
@@ -235,7 +235,7 @@
     }
 
     static sendDone() {
-      GM_setValue(GM_BROADCAST_KEY_NAME, this._genRandomVal());
+      GM_setValue(GM_BROADCAST_KEY_NAME, BroadcastSvc._genRandomVal());
     }
 
     static _genRandomVal() {
@@ -250,7 +250,6 @@
     }
   }
 
-  // NOTE: Some of methods can be marked as static but I'm too tired to try and check if it works or not
   class DoSurvey {
     #answerTables;
     firstOpt;

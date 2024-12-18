@@ -39,6 +39,7 @@ Script tự động khảo sát môn học UIT
   - [3️⃣ Ấn khảo sát](#-%E1%BA%A4n-kh%E1%BA%A3o-s%C3%A1t)
   - [4️⃣ Tắt script khi không sử dụng](#-t%E1%BA%AFt-script-khi-kh%C3%B4ng-s%E1%BB%AD-d%E1%BB%A5ng)
 - [📝 LICENSE](#-license)
+- [TODO](#todo)
 - [⭐ STAR GRAPH](#-star-graph)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -58,11 +59,7 @@ Script tự động khảo sát môn học UIT
 
 ### 1️⃣ Cài đặt extension Tampermonkey
 
-- [![Chrome](https://img.shields.io/badge/Chrome-f5e0dc?style=for-the-badge&logo=googlechrome&logoColor=white)](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo)
-- [![Firefox](https://img.shields.io/badge/Firefox-f5c2e7?style=for-the-badge&logo=firefoxbrowser&logoColor=white)](https://addons.mozilla.org/en-US/firefox/addon/tampermonkey/)
-- [![Microsoft Edge](https://img.shields.io/badge/Edge-cba6f7?style=for-the-badge&logo=microsoftedge&logoColor=white)](https://microsoftedge.microsoft.com/addons/detail/tampermonkey/iikmkjmpaadaobahmlepeloendndfphd)
-- [![Opera](https://img.shields.io/badge/Opera-eba0ac?style=for-the-badge&logo=opera&logoColor=white)](https://addons.opera.com/en/extensions/details/tampermonkey-beta/)
-- [![Safari](https://img.shields.io/badge/Safari-fab387?style=for-the-badge&logo=safari&logoColor=white)](https://apps.apple.com/us/app/tampermonkey/id1482490089)
+- [![tampermonkey](https://img.shields.io/badge/Tampermonkey-f5e0dc?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://www.tampermonkey.net/index.php?locale=en)
 
 ### 2️⃣ Cài đặt script
 
@@ -98,6 +95,13 @@ Script tự động khảo sát môn học UIT
 ## 📝 LICENSE
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-b4befe?style=for-the-badge)](./LICENSE)
+
+---
+
+## TODO
+
+- [ ] Button to quick toggle script
+- [ ] Refactor static methods
 
 ---
 
