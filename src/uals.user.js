@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.5
+// @version         3.0.0-dev.6
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -320,7 +320,10 @@
     }
 
     _continue() {
-      document.querySelector(CONTINUE_BUTTON_SELECTOR).click();
+      (
+        document.querySelector(CONTINUE_BUTTON_SELECTOR) ??
+        document.querySelector(SUBMIT_BUTTON_SELECT)
+      ).click();
     }
 
     _done() {
@@ -340,12 +343,7 @@
       check = this._firstTypeRun() || check;
       check = this._secondTypeRun() || check;
       check = this._thirdTypeRun() || check;
-      if (check) {
-        this._continue();
-      } else {
-        const submitBtn = document.querySelector(SUBMIT_BUTTON_SELECT);
-        submitBtn.click();
-      }
+      this._continue();
     }
   }
 
