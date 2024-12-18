@@ -33,9 +33,6 @@ Script tự động khảo sát môn học UIT
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [🎆 CHỨC NĂNG](#-ch%E1%BB%A8c-n%C4%82ng)
-- [🥂 DEMO](#-demo)
-  - [🖼️ Image](#-image)
-  - [🎬 Video](#-video)
 - [🪴 HƯỚNG DẪN](#-h%C6%AF%E1%BB%9Ang-d%E1%BA%AAn)
   - [1️⃣ Cài đặt extension Tampermonkey](#-c%C3%A0i-%C4%91%E1%BA%B7t-extension-tampermonkey)
   - [2️⃣ Cài đặt script](#-c%C3%A0i-%C4%91%E1%BA%B7t-script)
@@ -53,17 +50,7 @@ Script tự động khảo sát môn học UIT
 - Tự động đóng tab khi hoàn thành
 - One click điền khảo sát 💪
 
----
-
-## 🥂 DEMO
-
-### 🖼️ Image
-
-![home](./assets/images/home.png)
-
-### 🎬 Video
-
-No!
+![home](./assets/images/preview-home.png)
 
 ---
 
