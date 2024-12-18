@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.2
+// @version         3.0.0-dev.3
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -85,8 +85,6 @@
   const SUBMIT_BUTTON_SELECT = '#movesubmitbtn';
 
   const GM_BROADCAST_KEY_NAME = 'broadcast';
-  const SURVEY_DONE_MSG = 'uals-survey-done';
-  const SURVEY_FAIL_MSG = 'uals-survey-fail';
   const WINDOW_DONE_TITLE = 'HOÀN THÀNH KHẢO SÁT';
 
   const STYLE = `
@@ -199,8 +197,8 @@
       GM_setValue(Model.#thirdOptsKey, this.#thirdOpts);
     }
 
-    deleteUserOpts() {
-      let keys = GM_listValues();
+    static deleteUserOpts() {
+      const keys = GM_listValues();
       for (const key of keys) {
         GM_deleteValue(key);
       }
@@ -237,7 +235,7 @@
     }
 
     static sendDone() {
-      GM_setValue(GM_BROADCAST_KEY_NAME, BroadcastSvc._genRandomVal());
+      GM_setValue(GM_BROADCAST_KEY_NAME, this._genRandomVal());
     }
 
     static _genRandomVal() {
@@ -252,6 +250,7 @@
     }
   }
 
+  // NOTE: Some of methods can be marked as static but I'm too tired to try and check if it works or not
   class DoSurvey {
     #answerTables;
     firstOpt;
@@ -401,7 +400,7 @@
       this.#autoRun = null;
     }
 
-    _startBtnHTML() {
+    static _startBtnHTML() {
       return `
         <button class="uals__btn" id="uals__run-btn">
           Run Auto
@@ -409,7 +408,7 @@
       `;
     }
 
-    _stopBtnHTML() {
+    static _stopBtnHTML() {
       return `
         <button class="uals__btn uals__run-btn--running" id="uals__run-btn">
           Stop Auto
@@ -417,7 +416,7 @@
       `;
     }
 
-    _unavailableBtnHTML() {
+    static _unavailableBtnHTML() {
       return `
         <button class="uals__btn uals__run-btn--unavailable" id="uals__run-btn" disabled>
           No Survey
@@ -454,7 +453,7 @@
       this.#model = model;
     }
 
-    btnHTML() {
+    static btnHTML() {
       return `
         <button class="uals__btn" id="uals__config-btn">
           Config
@@ -462,13 +461,13 @@
       `;
     }
 
-    _pleaseStarHTML() {
+    static _pleaseStarHTML() {
       return `
         <p class="uals__please_star">👆 Cho mình xin 1 star repo dới 👆</p>
       `;
     }
 
-    _saveConfigBtnHTML() {
+    static _saveConfigBtnHTML() {
       return `
         <button class="uals__btn" id="uals__save-config-btn">
           Save
@@ -476,7 +475,7 @@
       `;
     }
 
-    _resetConfigBtnHTML() {
+    static _resetConfigBtnHTML() {
       return `
         <button class="uals__btn" id="uals__reset-config-btn">
           Reset
@@ -484,7 +483,7 @@
       `;
     }
 
-    configMenuHTML() {
+    static configMenuHTML() {
       return `
         <div id="uals__menu-container">
           <section class="uals__question-section">
@@ -538,7 +537,7 @@
       `;
     }
 
-    toggleConfigMenu() {
+    static toggleConfigMenu() {
       document
         .querySelector('#uals__menu-container')
         .classList.toggle('uals__menu-container--show');
@@ -559,7 +558,7 @@
       );
     }
 
-    _fetchUserOptsFromPage() {
+    static _fetchUserOptsFromPage() {
       function getSelections(CSSSelector) {
         const element = document.querySelector(CSSSelector);
         const formData = new FormData(element);
@@ -628,7 +627,7 @@
         .map((url) => url.getAttribute('href'));
     }
 
-    _getContainer() {
+    static _getContainer() {
       const html = `
         <div id="uals__container">
         </div>
@@ -643,7 +642,7 @@
       this.#container.insertAdjacentHTML('beforeend', element);
     }
 
-    _headerHTML() {
+    static _headerHTML() {
       return `
         <h2 align="center" style="margin: auto;">
           <a href="https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey" target="_blank">
@@ -693,5 +692,14 @@
     }
   }
 
-  init();
+  try {
+    init();
+  } catch (e) {
+    console.error(e);
+    Model.deleteUserOpts();
+    console.log(
+      `Error occurs. Deleted UserScript's storage. Reloading website`,
+    );
+    location.reload();
+  }
 })();
