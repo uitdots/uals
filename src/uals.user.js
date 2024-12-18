@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.3
+// @version         3.0.0-dev.4
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -400,7 +400,7 @@
       this.#autoRun = null;
     }
 
-    static _startBtnHTML() {
+    _startBtnHTML() {
       return `
         <button class="uals__btn" id="uals__run-btn">
           Run Auto
@@ -408,7 +408,7 @@
       `;
     }
 
-    static _stopBtnHTML() {
+    _stopBtnHTML() {
       return `
         <button class="uals__btn uals__run-btn--running" id="uals__run-btn">
           Stop Auto
@@ -416,7 +416,7 @@
       `;
     }
 
-    static _unavailableBtnHTML() {
+    _unavailableBtnHTML() {
       return `
         <button class="uals__btn uals__run-btn--unavailable" id="uals__run-btn" disabled>
           No Survey
@@ -453,7 +453,7 @@
       this.#model = model;
     }
 
-    static btnHTML() {
+    btnHTML() {
       return `
         <button class="uals__btn" id="uals__config-btn">
           Config
@@ -461,13 +461,13 @@
       `;
     }
 
-    static _pleaseStarHTML() {
+    _pleaseStarHTML() {
       return `
         <p class="uals__please_star">👆 Cho mình xin 1 star repo dới 👆</p>
       `;
     }
 
-    static _saveConfigBtnHTML() {
+    _saveConfigBtnHTML() {
       return `
         <button class="uals__btn" id="uals__save-config-btn">
           Save
@@ -475,7 +475,7 @@
       `;
     }
 
-    static _resetConfigBtnHTML() {
+    _resetConfigBtnHTML() {
       return `
         <button class="uals__btn" id="uals__reset-config-btn">
           Reset
@@ -483,7 +483,7 @@
       `;
     }
 
-    static configMenuHTML() {
+    configMenuHTML() {
       return `
         <div id="uals__menu-container">
           <section class="uals__question-section">
@@ -537,7 +537,7 @@
       `;
     }
 
-    static toggleConfigMenu() {
+    toggleConfigMenu() {
       document
         .querySelector('#uals__menu-container')
         .classList.toggle('uals__menu-container--show');
@@ -558,7 +558,7 @@
       );
     }
 
-    static _fetchUserOptsFromPage() {
+    _fetchUserOptsFromPage() {
       function getSelections(CSSSelector) {
         const element = document.querySelector(CSSSelector);
         const formData = new FormData(element);
@@ -610,7 +610,7 @@
     constructor() {
       this.#container = this._getContainer();
       this.#model = new Model();
-      this.#viewRunAuto = new ViewRunAuto(View._getSurveyURLs());
+      this.#viewRunAuto = new ViewRunAuto(this._getSurveyURLs());
       this.#viewConfig = new ViewConfig(this.#model);
       this.#model.addStyles();
       this._render();
@@ -620,14 +620,14 @@
       }
     }
 
-    static _getSurveyURLs() {
+    _getSurveyURLs() {
       const urls = [...document.querySelectorAll('table a')];
       return urls
         .filter((url) => url.innerHTML.includes('khảo sát về môn học'))
         .map((url) => url.getAttribute('href'));
     }
 
-    static _getContainer() {
+    _getContainer() {
       const html = `
         <div id="uals__container">
         </div>
@@ -642,7 +642,7 @@
       this.#container.insertAdjacentHTML('beforeend', element);
     }
 
-    static _headerHTML() {
+    _headerHTML() {
       return `
         <h2 align="center" style="margin: auto;">
           <a href="https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey" target="_blank">
@@ -700,6 +700,12 @@
     console.log(
       `Error occurs. Deleted UserScript's storage. Reloading website`,
     );
+    GM_notification({
+      text: 'Có lỗi, UALS tự động xoá storage của UALS và reload',
+      title: 'UALS',
+      tag: 'uals-error-reload',
+      timeout: 3000,
+    });
     location.reload();
   }
 })();
