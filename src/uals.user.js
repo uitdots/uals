@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0-dev.6
+// @version         3.0.0
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -31,7 +31,10 @@
   const SELECTIONS = {
     first: {
       question: 'Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này',
-      rawQuestion: '*Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này\n',
+      rawQuestions: [
+        '*Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này\n',
+        '* Tỷ lệ thời gian Anh/Chị lên lớp đối với môn học này\n',
+      ],
       answers: [
         { label: '<50%', selector: 'ul:nth-child(1) input' },
         { label: '50-80%', selector: 'ul:nth-child(2) input' },
@@ -41,8 +44,9 @@
     second: {
       question:
         'Anh chị tự đánh giá đạt được bao nhiêu % chuẩn đầu ra của môn học này',
-      rawQuestion:
+      rawQuestions: [
         '*Anh chị tự đánh giá đạt được bao nhiêu % chuẩn đầu ra của môn học này:\n',
+      ],
       answers: [
         {
           label: 'Không biết chuẩn đầu ra là gì',
@@ -214,7 +218,7 @@
           text: 'Bạn cần thiết lập các tuỳ chọn 🥵',
           title: 'UALS',
           tag: 'uals-require_config',
-          timeout: 5000,
+          timeout: 3000,
         });
         return false;
       }
@@ -241,11 +245,10 @@
     static _genRandomVal() {
       const min = Number.MIN_SAFE_INTEGER; // -9007199254740991
       const max = Number.MAX_SAFE_INTEGER; //  9007199254740991
-
       let val;
       do {
         val = Math.floor(Math.random() * (max - min + 1)) + min;
-      } while (val === GM_getValue);
+      } while (val === GM_getValue(GM_BROADCAST_KEY_NAME, null));
       return val;
     }
   }
@@ -267,7 +270,7 @@
       this._run();
     }
 
-    continueOnWelcome() {
+    _continueOnWelcome() {
       const welcomeTable = document.querySelector('table.welcome-table');
       if (!welcomeTable) {
         return;
@@ -276,37 +279,38 @@
     }
 
     _firstTypeRun() {
-      const table = this.#answerTables.find(
-        (table) =>
-          table.querySelector('tr').innerText === SELECTIONS.first.rawQuestion,
+      const table = this.#answerTables.find((table) =>
+        SELECTIONS.first.rawQuestions.some(
+          (q) => q === table.querySelector('tr').innerText,
+        ),
       );
       if (!table) {
-        return false;
+        return;
       }
       table
         .querySelector(SELECTIONS.first.answers[this.firstOpt].selector)
         .click();
-      return true;
+      return;
     }
 
     _secondTypeRun() {
-      const table = this.#answerTables.find(
-        (table) =>
-          table.querySelector('tr').innerText === SELECTIONS.second.rawQuestion,
+      const table = this.#answerTables.find((table) =>
+        SELECTIONS.second.rawQuestions.some(
+          (q) => q === table.querySelector('tr').innerText,
+        ),
       );
       if (!table) {
-        return false;
+        return;
       }
       table
         .querySelector(SELECTIONS.second.answers[this.secondOpt].selector)
         .click();
-      return true;
     }
 
     _thirdTypeRun() {
       const questions = document.querySelectorAll(SELECTIONS.third.container);
       if (questions.length === 0) {
-        return false;
+        return;
       }
       questions.forEach((question) =>
         question
@@ -316,7 +320,6 @@
           )
           .click(),
       );
-      return true;
     }
 
     _continue() {
@@ -337,12 +340,11 @@
     }
 
     _run() {
-      this.continueOnWelcome();
+      this._continueOnWelcome();
       this._done();
-      let check = false;
-      check = this._firstTypeRun() || check;
-      check = this._secondTypeRun() || check;
-      check = this._thirdTypeRun() || check;
+      this._firstTypeRun();
+      this._secondTypeRun();
+      this._thirdTypeRun();
       this._continue();
     }
   }
@@ -370,9 +372,10 @@
           text: 'Đã hoàn thành xong tất cả các khảo sát 😇',
           title: 'UALS',
           tag: 'uals-auto_survey_done',
-          timeout: 5000,
+          timeout: 3000,
         });
         this.#broadCast.removeReceiveMsgListener();
+        location.reload();
       }
     }
 
@@ -434,7 +437,7 @@
             text: 'Bạn đã dùng Auto Run rồi. Hãy refresh trang để refresh',
             title: 'UALS',
             tag: 'uals-already_auto_run',
-            timeout: 5000,
+            timeout: 3000,
           });
           return;
         }
@@ -581,7 +584,7 @@
 
     _resetUserOptsHandler(handler) {
       handler.addEventListener('click', () => {
-        this.#model.deleteUserOpts();
+        Model.deleteUserOpts();
         location.reload();
       });
     }

@@ -34,8 +34,7 @@ Script tự động khảo sát môn học UIT
 
 - [🎆 CHỨC NĂNG](#-ch%E1%BB%A8c-n%C4%82ng)
 - [🪴 HƯỚNG DẪN](#-h%C6%AF%E1%BB%9Ang-d%E1%BA%AAn)
-  - [1️⃣ Cài đặt extension Tampermonkey](#-c%C3%A0i-%C4%91%E1%BA%B7t-extension-tampermonkey)
-  - [2️⃣ Cài đặt script](#-c%C3%A0i-%C4%91%E1%BA%B7t-script)
+  - [1️⃣ Cài đặt](#-c%C3%A0i-%C4%91%E1%BA%B7t)
   - [3️⃣ Ấn khảo sát](#-%E1%BA%A4n-kh%E1%BA%A3o-s%C3%A1t)
   - [4️⃣ Tắt script khi không sử dụng](#-t%E1%BA%AFt-script-khi-kh%C3%B4ng-s%E1%BB%AD-d%E1%BB%A5ng)
 - [📝 LICENSE](#-license)
@@ -57,13 +56,10 @@ Script tự động khảo sát môn học UIT
 
 ## 🪴 HƯỚNG DẪN
 
-### 1️⃣ Cài đặt extension Tampermonkey
+### 1️⃣ Cài đặt
 
 - [![tampermonkey](https://img.shields.io/badge/Tampermonkey-f5e0dc?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://www.tampermonkey.net/index.php?locale=en)
-
-### 2️⃣ Cài đặt script
-
-[![uals.user.js](https://img.shields.io/badge/UALS-Tampermonkey_Userscript-89b4fa?style=for-the-badge)](../../raw/main/src/uals.user.js)
+- [![uals.user.js](https://img.shields.io/badge/UALS-Tampermonkey_Userscript-89b4fa?style=for-the-badge)](../../raw/main/src/uals.user.js)
 
 ### 3️⃣ Ấn khảo sát
 
@@ -100,6 +96,8 @@ Script tự động khảo sát môn học UIT
 
 ## TODO
 
+- [ ] If fail to check radio btns, don't continue
+- [ ] If haven't configured, do nothing on auto
 - [ ] Button to quick toggle script
 - [ ] Refactor static methods
 
