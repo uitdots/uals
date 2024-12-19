@@ -35,19 +35,21 @@ Script tự động khảo sát môn học UIT
 - [🎆 CHỨC NĂNG](#-ch%E1%BB%A8c-n%C4%82ng)
 - [🪴 HƯỚNG DẪN](#-h%C6%AF%E1%BB%9Ang-d%E1%BA%AAn)
   - [1️⃣ Cài đặt](#-c%C3%A0i-%C4%91%E1%BA%B7t)
-  - [3️⃣ Ấn khảo sát](#-%E1%BA%A4n-kh%E1%BA%A3o-s%C3%A1t)
-  - [4️⃣ Tắt script khi không sử dụng](#-t%E1%BA%AFt-script-khi-kh%C3%B4ng-s%E1%BB%AD-d%E1%BB%A5ng)
+  - [2️⃣ Khảo sát](#-kh%E1%BA%A3o-s%C3%A1t)
+- [📒 NOTE](#-note)
+  - [Tắt script](#t%E1%BA%AFt-script)
 - [📝 LICENSE](#-license)
-- [TODO](#todo)
+- [😞 TODO](#-todo)
 - [⭐ STAR GRAPH](#-star-graph)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+---
+
 ## 🎆 CHỨC NĂNG
 
-- Tùy chỉnh lựa chọn trả lời khảo sát _(có random)_
+- Tùy chỉnh lựa chọn trả lời khảo sát _(random tự chọn)_
 - Tự động điền khảo sát
-- Tự động đóng tab khi hoàn thành
 - One click điền khảo sát 💪
 
 ![home](./assets/images/preview-home.png)
@@ -61,7 +63,7 @@ Script tự động khảo sát môn học UIT
 - [![tampermonkey](https://img.shields.io/badge/Tampermonkey-f5e0dc?style=for-the-badge&logo=tampermonkey&logoColor=white)](https://www.tampermonkey.net/index.php?locale=en)
 - [![uals.user.js](https://img.shields.io/badge/UALS-Tampermonkey_Userscript-89b4fa?style=for-the-badge)](../../raw/main/src/uals.user.js)
 
-### 3️⃣ Ấn khảo sát
+### 2️⃣ Khảo sát
 
 1. Vào trang khảo sát _(1 trong 2)_
    - https://link.uit.edu.vn/khaosatmh
@@ -75,7 +77,11 @@ Script tự động khảo sát môn học UIT
 >
 > Tắt Userscript hoặc extension Tampermonkey nếu muốn khảo sát thủ công
 
-### 4️⃣ Tắt script khi không sử dụng
+---
+
+## 📒 NOTE
+
+### Tắt script
 
 1. `Tampermonkey` _(Extension settings)_
 2. `Dashboard`
@@ -94,7 +100,7 @@ Script tự động khảo sát môn học UIT
 
 ---
 
-## TODO
+## 😞 TODO
 
 - [ ] If fail to check radio btns, don't continue
 - [ ] If haven't configured, do nothing on auto
