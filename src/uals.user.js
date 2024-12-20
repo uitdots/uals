@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.0
+// @version         3.0.1
 // @author          Kevin Nitro
 // @namespace       https://github.com/KevinNitroG
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
@@ -87,7 +87,6 @@
   const SUBMIT_BUTTON_SELECT = '#movesubmitbtn';
 
   const GM_BROADCAST_KEY_NAME = 'broadcast';
-  const WINDOW_DONE_TITLE = 'HOÀN THÀNH KHẢO SÁT';
 
   const STYLE = `
     #uals__container {
@@ -255,27 +254,22 @@
 
   class DoSurvey {
     #answerTables;
-    firstOpt;
-    secondOpt;
+    #firstOpt;
+    #secondOpt;
     #thirdOpts;
 
     constructor() {
       const { firstOpts, secondOpts, thirdOpts } = new Model().getUserOpts();
-      this.firstOpt = getRandomElement(firstOpts);
-      this.secondOpt = getRandomElement(secondOpts);
+      this.#firstOpt = getRandomElement(firstOpts);
+      this.#secondOpt = getRandomElement(secondOpts);
       this.#thirdOpts = thirdOpts;
       this.#answerTables = [
         ...document.querySelectorAll('table.question-wrapper'),
       ];
-      this._run();
     }
 
-    _continueOnWelcome() {
-      const welcomeTable = document.querySelector('table.welcome-table');
-      if (!welcomeTable) {
-        return;
-      }
-      this._continue();
+    _checkIfHasConfigured() {
+      return this.#firstOpt && this.#secondOpt && this.#thirdOpts.length !== 0;
     }
 
     _firstTypeRun() {
@@ -288,7 +282,7 @@
         return;
       }
       table
-        .querySelector(SELECTIONS.first.answers[this.firstOpt].selector)
+        .querySelector(SELECTIONS.first.answers[this.#firstOpt].selector)
         .click();
       return;
     }
@@ -303,7 +297,7 @@
         return;
       }
       table
-        .querySelector(SELECTIONS.second.answers[this.secondOpt].selector)
+        .querySelector(SELECTIONS.second.answers[this.#secondOpt].selector)
         .click();
     }
 
@@ -322,30 +316,46 @@
       );
     }
 
-    _continue() {
-      (
-        document.querySelector(CONTINUE_BUTTON_SELECTOR) ??
-        document.querySelector(SUBMIT_BUTTON_SELECT)
-      ).click();
-    }
-
-    _done() {
-      if (
-        document.querySelector('.site-name')?.innerText.trim() ===
-        WINDOW_DONE_TITLE
-      ) {
-        BroadcastSvc.sendDone();
-        window.close();
+    _continueOnWelcome() {
+      const welcomeTable = document.querySelector('table.welcome-table');
+      if (!welcomeTable) {
+        return;
       }
+      this._continue();
     }
 
-    _run() {
+    // NOTE: This isn't handled strictly
+    _done() {
+      BroadcastSvc.sendDone();
+      window.close();
+    }
+
+    _continue() {
+      const continueBtn =
+        document.querySelector(CONTINUE_BUTTON_SELECTOR) ??
+        document.querySelector(SUBMIT_BUTTON_SELECT);
+      if (continueBtn) {
+        continueBtn.click();
+        return;
+      }
       this._continueOnWelcome();
       this._done();
-      this._firstTypeRun();
-      this._secondTypeRun();
-      this._thirdTypeRun();
-      this._continue();
+    }
+
+    run() {
+      if (!this._checkIfHasConfigured()) {
+        console.log('Bạn chưa config nên script sẽ không tự điền đâu nhé!');
+        return;
+      }
+      try {
+        this._firstTypeRun();
+        this._secondTypeRun();
+        this._thirdTypeRun();
+        this._continue();
+      } catch (e) {
+        console.error(e);
+        throw new Error(e);
+      }
     }
   }
 
@@ -612,6 +622,9 @@
       this.#model = new Model();
       this.#viewRunAuto = new ViewRunAuto(this._getSurveyURLs());
       this.#viewConfig = new ViewConfig(this.#model);
+    }
+
+    run() {
       this.#model.addStyles();
       this._render();
       this._addHandlers();
@@ -680,15 +693,36 @@
 
     constructor() {
       this.#view = new View();
-      this.#view;
+    }
+
+    run() {
+      this.#view.run();
     }
   }
 
   function init() {
     if (window.location.pathname === '/sinhvien/phieukhaosat') {
-      new Controller();
+      const controller = new Controller();
+      controller.run();
     } else {
-      new DoSurvey();
+      try {
+        const doSurvey = new DoSurvey();
+        doSurvey.run();
+      } catch (_) {
+        GM_notification({
+          text: 'Có lỗi trong quá trình làm khảo sát. Vui lòng check log (F12) tại tab phiếu khảo sát (không phải trang chủ) và tạo issue 😞',
+          title: 'UALS',
+          tag: 'uals-error-survey',
+          ondone: () => {
+            GM_openInTab(
+              'https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/issues',
+              {
+                active: true,
+              },
+            );
+          },
+        });
+      }
     }
   }
 
@@ -698,7 +732,7 @@
     console.error(e);
     Model.deleteUserOpts();
     console.log(
-      `Error occurs. Deleted UserScript's storage. Reloading website`,
+      "Error occurs. Deleted UserScript's storage. Reloading website",
     );
     GM_notification({
       text: 'Có lỗi, UALS tự động xoá storage của UALS và reload',

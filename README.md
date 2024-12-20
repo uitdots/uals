@@ -102,10 +102,11 @@ Script tự động khảo sát môn học UIT
 
 ## 😞 TODO
 
-- [ ] If fail to check radio btns, don't continue
-- [ ] If haven't configured, do nothing on auto
 - [ ] Button to quick toggle script
 - [ ] Refactor static methods
+- [ ] If running fail, log to home (maybe better way to handle sending data between tabs)
+- [x] If fail to check radio btns, don't continue
+- [x] If haven't configured, do nothing on auto
 
 ---
 
