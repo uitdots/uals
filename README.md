@@ -1,4 +1,4 @@
-# ✨ UIT - AUTO LECTURE SURVEY ✨
+# ✨ UALS ✨
 
 <pre align="center">
 ██╗   ██╗ █████╗ ██╗     ███████╗
@@ -11,15 +11,15 @@
 Script tự động khảo sát môn học UIT
 </pre>
 
-[![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/KevinNitroG/UIT-Auto-Lecture-Survey?style=for-the-badge&color=F2CDCD)](../../commits/main)
-![GitHub issues](https://img.shields.io/github/issues-raw/KevinNitroG/UIT-Auto-Lecture-Survey?style=for-the-badge&color=CBA6F7)
-![GitHub repo size](https://img.shields.io/github/repo-size/KevinNitroG/UIT-Auto-Lecture-Survey?style=for-the-badge&color=EBA0AC)
-[![GitHub contributors](https://img.shields.io/github/contributors/KevinNitroG/UIT-Auto-Lecture-Survey?style=for-the-badge&color=FAB387)](../../graphs/contributors)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/KevinNitroG/UIT-Auto-Lecture-Survey?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecture-survey)
-[![wakatime](https://wakatime.com/badge/github/KevinNitroG/UIT-Auto-Lecturer-Survey.svg?style=for-the-badge)](https://wakatime.com/badge/github/KevinNitroG/UIT-Auto-Lecturer-Survey)
+[![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/uitdots/uals?style=for-the-badge&color=F2CDCD)](../../commits/main)
+![GitHub issues](https://img.shields.io/github/issues-raw/uitdots/uals?style=for-the-badge&color=CBA6F7)
+![GitHub repo size](https://img.shields.io/github/repo-size/uitdots/uals?style=for-the-badge&color=EBA0AC)
+[![GitHub contributors](https://img.shields.io/github/contributors/uitdots/uals?style=for-the-badge&color=FAB387)](../../graphs/contributors)
+[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/uitdots/uals?style=for-the-badge)](https://www.codefactor.io/repository/github/kevinnitrog/uit-auto-lecture-survey)
+[![wakatime](https://wakatime.com/badge/github/uitdots/UIT-Auto-Lecturer-Survey.svg?style=for-the-badge)](https://wakatime.com/badge/github/uitdots/UIT-Auto-Lecturer-Survey)
 
-[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecture-Survey.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecture-Survey/)
-[![DeepSource](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecture-Survey.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/KevinNitroG/UIT-Auto-Lecture-Survey/)
+[![DeepSource](https://app.deepsource.com/gh/uitdots/uals.svg/?label=active+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/uitdots/uals/)
+[![DeepSource](https://app.deepsource.com/gh/uitdots/uals.svg/?label=resolved+issues&show_trend=true&token=af8s5K2DNJnNqcemAWM_beFG)](https://app.deepsource.com/gh/uitdots/uals/)
 
 > [!IMPORTANT]
 >
@@ -112,10 +112,10 @@ Script tự động khảo sát môn học UIT
 
 ## ⭐ STAR GRAPH
 
-<a href="https://star-history.com/#KevinNitroG/UIT-Auto-Lecture-Survey&Timeline">
+<a href="https://star-history.com/#uitdots/uals&Timeline">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=KevinNitroG/UIT-Auto-Lecture-Survey&type=Timeline&theme=dark" />
-    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=KevinNitroG/UIT-Auto-Lecture-Survey&type=Timeline" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=KevinNitroG/UIT-Auto-Lecture-Survey&type=Timeline" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=uitdots/uals&type=Timeline&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=uitdots/uals&type=Timeline" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=uitdots/uals&type=Timeline" />
   </picture>
 </a>

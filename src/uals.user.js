@@ -1,14 +1,14 @@
 // ==UserScript==
 // @name            UIT - Auto Lecture Survey (UALS)
-// @version         3.0.1
+// @version         3.0.2
 // @author          Kevin Nitro
-// @namespace       https://github.com/KevinNitroG
+// @namespace       https://github.com/uitdots
 // @description     Userscript tự động khảo sát môn học UIT. Khuyến nghị disable script khi không sử dụng, tránh conflict với các khảo sát / link khác của trường.
-// @downloadURL     https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/raw/main/src/uals.user.js
-// @updateURL       https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/raw/main/src/uals.user.js
-// @supportURL      https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/issues
-// @license         https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/raw/main/LICENSE
-// @icon            https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/raw/main/assets/images/UIT-logo.png
+// @downloadURL     https://github.com/uitdots/UIT-Auto-Lecture-Survey/raw/main/src/uals.user.js
+// @updateURL       https://github.com/uitdots/UIT-Auto-Lecture-Survey/raw/main/src/uals.user.js
+// @supportURL      https://github.com/uitdots/UIT-Auto-Lecture-Survey/issues
+// @license         https://github.com/uitdots/UIT-Auto-Lecture-Survey/raw/main/LICENSE
+// @icon            https://github.com/uitdots/UIT-Auto-Lecture-Survey/raw/main/assets/images/UIT-logo.png
 // @run-at          document-idle
 // @match           http*://student.uit.edu.vn/sinhvien/phieukhaosat
 // @match           http*://survey.uit.edu.vn/index.php/survey/index
@@ -72,8 +72,7 @@
     },
     third: {
       question: 'Đánh giá về hoạt động giảng dạy trực tuyến của Giảng viên',
-      container:
-        'table[summary="Đánh giá về hoạt động giảng dạy trực tuyến của Giảng viên - an array type question"] .answers-list.radio-list',
+      container: 'table.question .answers-list.radio-list',
       answers: [
         { selector: '.answer_cell_00MH01.answer-item.radio-item' },
         { selector: '.answer_cell_00MH02.answer-item.radio-item' },
@@ -658,7 +657,7 @@
     _headerHTML() {
       return `
         <h2 align="center" style="margin: auto;">
-          <a href="https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey" target="_blank">
+          <a href="https://github.com/uitdots/UIT-Auto-Lecture-Survey" target="_blank">
             UIT - Auto Lecture Survey
           </a>
         </h2>
@@ -715,7 +714,7 @@
           tag: 'uals-error-survey',
           ondone: () => {
             GM_openInTab(
-              'https://github.com/KevinNitroG/UIT-Auto-Lecture-Survey/issues',
+              'https://github.com/uitdots/UIT-Auto-Lecture-Survey/issues',
               {
                 active: true,
               },
